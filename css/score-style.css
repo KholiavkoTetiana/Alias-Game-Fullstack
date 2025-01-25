@@ -1,0 +1,89 @@
+img {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 50%;
+    height: auto;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+}
+
+
+.team {
+    padding: 0 10px;
+    font-size: 20px;
+    color: #000000;
+    left: 0;
+    /*margin-right: 10px;*/
+    /*display: inline-flex;*/
+}
+
+.one-line {
+    display: inline-flex; /* Використання флексбоксу для вирівнювання */
+    /*align-items: center; !* Вирівнювання тексту по вертикалі *!*/
+}
+
+/*h2,h4 {*/
+/*    top: 60px;*/
+/*    width: 50%;*/
+
+/*    align-items: center; !* Вирівнюємо по вертикалі *!*/
+/*    text-align: center;*/
+/*    color: #333;*/
+/*}*/
+
+.round{
+    top: 60px;
+    display: flex;
+    width: 50%;
+    justify-content: center; /* Вирівнюємо елементи в div */
+    align-items: center; /* Вирівнюємо по вертикалі */
+    gap: 10px;
+}
+
+
+
+.start-button{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 55%; /* На всю ширину лівої половини */
+    font-size: 30px;
+    background-color: #007bff;
+    color: white;
+    padding: 20px 0;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+/* команда1    × */
+#team-to-play-div {
+    display: flex;
+    flex-direction: column; /* Елементи всередині "team-to-play-div" йдуть в стовпчик */
+    margin-top: 30px;
+    max-width: 50%; /* відступ від команди до кнопки */
+}
+
+.team-item {
+    display: flex;
+    flex-direction: column; /* Елементи в стовпчик */
+    align-items: flex-start; /* Вирівнювання по лівому краю */
+    padding: 20px 30px;
+    margin-bottom: 15px;
+    font-size: 25px;
+    color: #bb0000;
+}
+
+.team-item p {
+    margin: 20px;
+}
+
+
+
+/* команда1    × */

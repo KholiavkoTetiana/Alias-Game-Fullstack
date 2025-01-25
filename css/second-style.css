@@ -1,0 +1,124 @@
+img {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 50%;
+    height: auto;
+
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.team-head {
+    top: 60px;
+    width: 55%;
+    text-align: center;
+    color: #333;
+
+}
+
+
+.start-message{
+    padding: 10px 30px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    color: #888888;
+}
+
+/* команда1    × */
+#teams-div {
+    margin-top: 30px;
+    max-width: 30%; /* відступ від команди до кнопки */
+}
+
+.team-item {
+    display: flex;
+    justify-content: space-between; /* Простір між назвою і кнопкою */
+    align-items: center;
+    padding: 10px 30px;
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+
+.team-item p {
+    margin: 0;
+}
+
+.team-item button {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.team-item button:hover {
+    background-color: #e60000;
+}
+
+/* команда1    × */
+
+.team-input{
+    padding: 10px 300px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    font-size: 15px;
+
+}
+
+.team-input::placeholder {
+    text-align: center;
+    /*змінити позицію курсора на центру*/
+}
+
+.plus {
+    position: absolute;
+    font-size: 40px;
+    background-color: #007bff;
+    color: white;
+    padding: 5px;
+    left: 0;
+    width: 55%;
+    margin: 60px auto 5px; /* Відступ зверху і автоцентрування */
+    cursor: pointer;
+    border: none;
+}
+
+.plus:hover {
+    background-color: #0056b3;
+}
+
+/*.rename-note {*/
+/*    position: absolute;*/
+/*    bottom: 70px; !* Трохи вище кнопки "Далі" *!*/
+/*    left: 0;*/
+/*    width: 50%; !* На лівій половині *!*/
+/*    text-align: center;*/
+/*    color: #888888;*/
+/*}*/
+
+
+.next-button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 55%; /* На всю ширину лівої половини */
+    font-size: 25px;
+    background-color: #007bff;
+    color: white;
+    padding: 22px 0;
+    border: none;
+    cursor: pointer;
+
+}
+
+.next-button:hover {
+    background-color: #0056b3;
+}
+
+

@@ -1,0 +1,12 @@
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-head {  /* Заголовки: Команди, Рейтинг команд*/
+    top: 60px;
+    width: 55%;
+    text-align: center;
+    color: #333;
+}
+

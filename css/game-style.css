@@ -1,0 +1,35 @@
+img {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 50%;
+    height: auto;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.top{
+    top: 60px;
+    width: 50%;
+    text-align: center;
+    color: #333;
+}
+
+.words{
+    width: 50%;
+
+    /*margin: auto; !* Центрування рамки по горизонталі *!*/
+    display: flex;
+    justify-content: center; /* Горизонтальне вирівнювання по центру */
+    align-items: center; /* Вертикальне вирівнювання по центру */
+}
+
+.bottom{
+    bottom: 0;
+    width: 50%;
+    text-align: center;
+    color: #333;
+}
