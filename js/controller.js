@@ -34,7 +34,7 @@ export const controller = {
             alert("Максимальна кількість команд — 5.");
             return;
         }
-        if(model.teams.some(team => team.name === newInputName)){
+        if (model.teams.some(team => team.name === newInputName)) {
             alert("Команда з такою назвою вже існує.");
             return;
         }
@@ -52,17 +52,51 @@ export const controller = {
             alert("Команда не знайдена");
         }
         saveModel();
+    },
+
+    getNexWord() {
+        const randomIndex = Math.floor(Math.random() * aliasWords.length);
+        const randomWord = aliasWords[randomIndex];
+        usedWords.push(randomWord);
+        aliasWords.splice(randomIndex, 1);
+        saveModel();
+
+        return randomWord;
+    },
+    chooseNextTeam() {
+        const activeTeam = model.activeTeamIndex;
+        if (activeTeam === null || activeTeam === undefined) {
+            model.activeTeamIndex = 0;
+            console.log(`початок гри, команда 1 [${model.activeTeamIndex}]`);
+        }
+        if (activeTeam !== null && activeTeam !== model.teams.length - 1) {
+            model.activeTeamIndex++;
+            console.log(`команда [${model.activeTeamIndex}]`);
+        }
+        if (activeTeam !== null && activeTeam === model.teams.length - 1) {
+            model.activeTeamIndex = 0;
+            console.log(`з останньої на першу [${model.activeTeamIndex}]`);
+        }
+        saveModel();
+    },
+    getActiveTeam() {
+        return model.teams[model.activeTeamIndex];
     }
-
+    ,
+    addGuess() {
+        model.guessed++;
+        saveModel();
+    }
+    ,
+    addSkip() {
+        model.skip++;
+        saveModel();
+    },
+    calculateScore() {
+        this.getActiveTeam().score = model.guessed - model.skip;
+    }
 }
 
-export function wordProcessing() {
-    const randomIndex = Math.floor(Math.random() * aliasWords.length);
-    const randomWord = aliasWords[randomIndex];
-    usedWords.push(randomWord);
-    aliasWords.splice(randomIndex, 1);
-    return randomWord;
-}
 
 // const arry = ["1", "2", "3"];
 // arry.splice(1, 1);

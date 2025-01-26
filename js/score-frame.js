@@ -1,5 +1,6 @@
-import {initStorage, model} from "./model.js";
-initStorage();
+import {readStorage, model} from "./model.js";
+import {controller} from "./controller";
+readStorage();
 
 function renderTeamsToPlay(teams) {
     const teamsToPlayDiv = document.querySelector("#team-to-play-div");
@@ -30,8 +31,10 @@ function renderTeamsToPlay(teams) {
     }
 }
 
+
+
 function renderActiveTeam(){
-    document.querySelector("#active-team").textContent = model.active;
+    document.querySelector("#active-team").textContent = controller.getActiveTeam().name;
 }
 renderActiveTeam();
 

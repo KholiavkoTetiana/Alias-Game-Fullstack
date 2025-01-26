@@ -2,7 +2,7 @@ export let model = {
     teams: [
 
     ],
-    active: null,
+    activeTeamIndex: null,
     round: 0,
     guessed: 0,
     skip: 0,
@@ -45,7 +45,7 @@ export const usedWords = [
 
 ];
 
-export function initStorage(){
+export function readStorage(){
     const savedData = JSON.parse(localStorage.getItem("model"));
     // const savedData = modelExample;
 
@@ -60,6 +60,9 @@ export function saveModel(){
     localStorage.setItem("model", JSON.stringify(model));
 
 }
+
+readStorage();
+
 
 //
 
@@ -104,7 +107,7 @@ export function saveModel(){
 // '{"teams":[{"name":"team1","score":0},{"name":"team2","score":0},{"name":"team3","score":0}],"teamNames":["файл","абрикос","миша","павук","слон","тигр","гепард","крокодил","ведмідь","жаба","змія"]}'
 // localStorage.setItem("model", mod);
 // undefined
-// localStorage.getItem("model");
-// '{"teams":[{"name":"team1","score":0},{"name":"team2","score":0},{"name":"team3","score":0}],"teamNames":["файл","абрикос","миша","павук","слон","тигр","гепард","крокодил","ведмідь","жаба","змія"]}'
-// JSON.parse(localStorage.getItem("model"));
+// // localStorage.getItem("model");
+// // '{"teams":[{"name":"team1","score":0},{"name":"team2","score":0},{"name":"team3","score":0}],"teamNames":["файл","абрикос","миша","павук","слон","тигр","гепард","крокодил","ведмідь","жаба","змія"]}'
 // {teams: Array(3), teamNames: Array(11)}teamNames: Array(11)0: "файл"1: "абрикос"2: "миша"3: "павук"4: "слон"5: "тигр"6: "гепард"7: "крокодил"8: "ведмідь"9: "жаба"10: "змія"length: 11[[Prototype]]: Array(0)teams: Array(3)0: {name: 'team1', score: 0}1: {name: 'team2', score: 0}2: {name: 'team3', score: 0}length: 3[[Prototype]]: Array(0)[[Prototype]]: Object
+// JSON.parse(localStorage.getItem("model"));

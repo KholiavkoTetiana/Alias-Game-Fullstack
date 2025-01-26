@@ -1,7 +1,7 @@
-import {initStorage, model} from "./model.js";
+import {readStorage, model} from "./model.js";
 import {controller} from "./controller.js";
 
-initStorage();
+readStorage();
 
 
 function renderTeams(teams) {

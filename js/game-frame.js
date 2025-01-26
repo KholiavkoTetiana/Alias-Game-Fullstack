@@ -1,46 +1,55 @@
-import {initStorage, model} from "./model.js";
-import {wordProcessing} from "./controller.js";
+import {readStorage, model} from "./model.js";
+import {controller} from "./controller.js";
 
-initStorage();
 
-function renderActiveTeam(){
-    document.querySelector("#active-team").textContent = model.active;
+function renderWords() {
+    document.querySelector("#current-word").innerText = controller.getNexWord();
 }
-renderActiveTeam();
 
-function renderWords(){
-    document.querySelector("#current-word").innerText = wordProcessing();
-}
-renderWords();
-
-function guessRender(){
+function guessScoreRender() {
     document.querySelector("#guess-score").textContent = "" + model.guessed;
 }
 
-function skipRender(){
+function skipScoreRender() {
     document.querySelector("#skip-score").textContent = "" + model.skip;
 }
 
-function game(){
+
+function renderActiveTeam() {
+    document.querySelector("#active-team").textContent = model.teams[model.activeTeamIndex].name;
+}
+
+function game() {
     const guessButton = document.querySelector("#guess-btn");
-    const skipButton =document.querySelector("#skip-btn");
+    const skipButton = document.querySelector("#skip-btn");
+
+    controller.chooseNextTeam();
 
     guessButton.addEventListener("click", () => {
-        model.guessed ++;
+        controller.addGuess();
         renderWords();
-        guessRender();
-
+        guessScoreRender();
     });
 
     skipButton.addEventListener("click", () => {
-        model.skip --;
+        controller.addSkip();
         renderWords();
-        skipRender();
+        skipScoreRender();
     });
-
 }
 
+function endRound(){
+    controller.calculateScore();
+    model.skip = 0;
+    model.guessed = 0;
+    //chooseNextTeam();
+}
+
+renderWords();
+
 game();
+renderActiveTeam();
+
 
 /*
 змінювати назву поточної команди
