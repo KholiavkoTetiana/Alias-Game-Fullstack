@@ -1,6 +1,6 @@
 // Alias controller API
 
-import {model} from "./model.js"
+import {aliasWords, model, saveModel, usedWords} from "./model.js"
 
 
 export const controller = {
@@ -40,8 +40,7 @@ export const controller = {
         }
 
         model.teams.push({name: newInputName, score: 0});
-        localStorage.setItem("model", JSON.stringify(model));
-
+        saveModel();
     },
 
     deleteTeam(teamName) {
@@ -52,10 +51,19 @@ export const controller = {
         } else {
             alert("Команда не знайдена");
         }
-        localStorage.setItem("model", JSON.stringify(model));
+        saveModel();
     }
-
 
 }
 
+export function wordProcessing() {
+    const randomIndex = Math.floor(Math.random() * aliasWords.length);
+    const randomWord = aliasWords[randomIndex];
+    usedWords.push(randomWord);
+    aliasWords.splice(randomIndex, 1);
+    return randomWord;
+}
 
+// const arry = ["1", "2", "3"];
+// arry.splice(1, 1);
+// console.log(arry);

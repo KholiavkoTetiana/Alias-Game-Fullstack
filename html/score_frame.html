@@ -13,28 +13,29 @@
 
     <div id="team-to-play-div">
         <div class="team-item">
-            <p>Команда 1: </p>
-            <p class="score"> 0</p>
+<!--            <p>Команда 1: </p>-->
+<!--            <p class="score"> 0</p>-->
         </div>
 
         <div class="team-item">
-            <p>Команда 2: </p>
-            <p class="score"> 0</p>
+<!--            <p>Команда 2: </p>-->
+<!--            <p class="score"> 0</p>-->
         </div>
     </div>
 
     <div>
         <div class="round">
-            <h2>Раунд </h2>
-            <h2>0</h2>
+            <p>Раунд </p>
+            <p id="current-round"></p>
         </div>
-
-        <h4 class="round">Готуються до гри</h4>
-        <h2 class="round">Команда 1</h2>
+        <h3 class="round">Готуються до гри</h3>
+        <h2 id="active-team" class="round"></h2>
+        <!--        команда-->
 
     </div>
 
-    <button class="start-button">Почати гру</button>
+    <button onclick="window.location.href='/alias/html/game-frame.html'" class="start-button">Почати гру</button>
+
 
     <img src="../img/gameFieldVer.jpg" alt="Фото приклад">
 

@@ -1,5 +1,8 @@
-import {model} from "./model.js";
+import {initStorage, model} from "./model.js";
 import {controller} from "./controller.js";
+
+initStorage();
+
 
 function renderTeams(teams) {
     const teamsDiv = document.querySelector("#teams-div");

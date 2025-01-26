@@ -1,3 +1,6 @@
+import {initStorage, model} from "./model.js";
+initStorage();
+
 function renderTeamsToPlay(teams) {
     const teamsToPlayDiv = document.querySelector("#team-to-play-div");
     teamsToPlayDiv.innerHTML = '';
@@ -27,15 +30,20 @@ function renderTeamsToPlay(teams) {
     }
 }
 
-function teamToPlay(){
+function renderActiveTeam(){
+    document.querySelector("#active-team").textContent = model.active;
+}
+renderActiveTeam();
 
-    const savedData = localStorage.getItem("model");
-    if (savedData) {
-        const model = JSON.parse(savedData);
+function renderRound(){
+    document.querySelector("#current-round").textContent = model.round;
+}
+renderRound();
+
+
+function teamToPlay(){
         renderTeamsToPlay(model.teams); ///??????
-    }else {
-        console.log("Дані відсутні у localStorage.");
-    }
+
 }
 
 teamToPlay();

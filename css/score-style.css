@@ -13,14 +13,14 @@ body {
 }
 
 
-.team {
-    padding: 0 10px;
-    font-size: 20px;
-    color: #000000;
-    left: 0;
-    /*margin-right: 10px;*/
-    /*display: inline-flex;*/
-}
+/*.team {*/
+/*    padding: 0 10px;*/
+/*    font-size: 20px;*/
+/*    color: #831d1d;*/
+/*    left: 0;*/
+/*    !*margin-right: 10px;*!*/
+/*    !*display: inline-flex;*!*/
+/*}*/
 
 .one-line {
     display: inline-flex; /* Використання флексбоксу для вирівнювання */
@@ -37,12 +37,26 @@ body {
 /*}*/
 
 .round{
-    top: 60px;
+    /*top: 60px;*/
     display: flex;
     width: 50%;
     justify-content: center; /* Вирівнюємо елементи в div */
     align-items: center; /* Вирівнюємо по вертикалі */
-    gap: 10px;
+    gap: 15px;
+    margin: 0;
+    padding: 10px;
+}
+
+.round p{
+    padding-top: 15px;
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+h3{
+    font-size: 20px;
+    font-weight: bold;
+    color: #888888;
 }
 
 
@@ -66,18 +80,18 @@ body {
 #team-to-play-div {
     display: flex;
     flex-direction: column; /* Елементи всередині "team-to-play-div" йдуть в стовпчик */
-    margin-top: 30px;
+    margin-top: 10px;
     max-width: 50%; /* відступ від команди до кнопки */
 }
 
 .team-item {
     display: flex;
-    flex-direction: column; /* Елементи в стовпчик */
+    /*flex-direction: column; !* Елементи в стовпчик *!*/
     align-items: flex-start; /* Вирівнювання по лівому краю */
-    padding: 20px 30px;
+    padding: 10px 10px;
     margin-bottom: 15px;
     font-size: 25px;
-    color: #bb0000;
+    color: #2626e4;
 }
 
 .team-item p {

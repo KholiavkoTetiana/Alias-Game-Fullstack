@@ -1,37 +1,64 @@
-export const model = {
+export let model = {
     teams: [
 
-    ]
+    ],
+    active: null,
+    round: 0,
+    guessed: 0,
+    skip: 0,
+
 }
 
 export const modelExample = {
     teams: [
         {
             name: 'team1',
-            score: 0
+            score: 5
         },
         {
             name: 'team2',
-            score: 0
+            score: 7
         },
-        {
-            name: 'team3',
-            score: 0
-        },
+
     ],
-    teamNames: [
-        "файл",
-        "абрикос",
-        "миша",
-        "павук",
-        "слон",
-        "тигр",
-        "гепард",
-        "крокодил",
-        "ведмідь",
-        "жаба",
-        "змія"
-    ]
+    active: 'team1',
+    round: 5,
+    guessed: 5,
+    skip: 2,
+
+}
+
+export const aliasWords = [
+    "сонце", "місяць", "зоря", "веселка", "хмара",
+    "вода", "океан", "гору", "ліс", "пустеля",
+    "машина", "літак", "потяг", "велосипед", "човен",
+    "книга", "зошит", "олівець", "ручка", "гумка",
+    "птах", "рибка", "слон", "жираф", "тигр",
+    "музика", "піаніно", "гітара", "барабан", "скрипка",
+    "друг", "сім'я", "школа", "учень", "вчитель",
+    "комп'ютер", "телефон", "екран", "клавіатура", "інтернет",
+    "яблуко", "банан", "вишня", "кавун", "груша",
+    "спорт", "футбол", "баскетбол", "теніс", "шахи"
+];
+
+export const usedWords = [
+
+];
+
+export function initStorage(){
+    const savedData = JSON.parse(localStorage.getItem("model"));
+    // const savedData = modelExample;
+
+    if (savedData) {
+        model = savedData;
+    }else {
+        console.log("Дані відсутні у localStorage.");
+    }
+}
+
+export function saveModel(){
+    localStorage.setItem("model", JSON.stringify(model));
+
 }
 
 //

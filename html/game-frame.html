@@ -7,27 +7,35 @@
     <link rel="stylesheet" href="../css/game-style.css">
 </head>
 <body>
-    <div class="top">
-        <h2>Назва команди</h2>
 
-        <p>0</p>
-        <p>Вгадано</p>
+<div class="left-container">
+
+    <h2 id="active-team"></h2>
+
+    <div class="top-buttons">
+        <p class="action-btn">Стоп</p>
+        <p class="action-btn">Таймер</p>
     </div>
 
+    <hr class="separator">
 
-    <h1 class="words">Слово</h1>
+    <h1 id="current-word" class="word-display">Слово</h1>
 
-    <div class="bottom">
-        <p>Вгадано</p>
-        <p>0</p>
-
-        <span>Таймер</span>
+    <div class="buttons-container">
+        <div class="button-group">
+            <p id="guess-score" class="score">1</p>
+            <button id="guess-btn" class="guess-btn">Вгадано</button>
+        </div>
+        <div class="button-group">
+            <p id="skip-score" class="score">2</p>
+            <button id="skip-btn" class="skip-btn">Пропущено</button>
+        </div>
     </div>
-
-
-    <p>Стоп</p>
+</div>
 
     <img src="../img/gameFieldVer.jpg" alt="Фото приклад">
 
 </body>
+    <script type="module" src="../js/game-frame.js"></script>
+
 </html>
