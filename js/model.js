@@ -46,14 +46,19 @@ export const usedWords = [
 ];
 
 export function readStorage(){
-    const savedData = JSON.parse(localStorage.getItem("model"));
-    // const savedData = modelExample;
+    try {
+        const savedData = JSON.parse(localStorage.getItem("model"));
+        // const savedData = modelExample;
 
-    if (savedData) {
-        model = savedData;
-    }else {
-        console.log("Дані відсутні у localStorage.");
+        if (savedData) {
+            model = savedData;
+        }else {
+            console.log("Дані відсутні у localStorage.");
+        }
+    }catch (error){
+        console.error("не можу дістати данні");
     }
+
 }
 
 export function saveModel(){

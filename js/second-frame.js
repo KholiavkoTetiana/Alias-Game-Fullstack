@@ -71,3 +71,9 @@ function removeStartMessage() {
 
 removeStartMessage();
 
+function startRound(){ // визначаємо поточну команду
+    const startBtn = document.querySelector("#go-to-score");
+    startBtn.addEventListener("click", controller.chooseNextTeam);
+}
+
+startRound();
