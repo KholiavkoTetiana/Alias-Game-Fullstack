@@ -93,10 +93,10 @@ export const controller = {
         saveModel();
     },
     calculateScore() {
-        this.getActiveTeam().score = model.guessed - model.skip;
+        this.getActiveTeam().score += model.guessed - model.skip;
     },
     endRound() {
-        controller.calculateScore();
+        this.calculateScore();
         model.skip = 0;
         model.guessed = 0;
         model.round ++;
