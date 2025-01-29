@@ -3,7 +3,7 @@ export let model = {
 
     ],
     activeTeamIndex: null,
-    round: 0,
+    round: 1,
     guessed: 0,
     skip: 0,
 

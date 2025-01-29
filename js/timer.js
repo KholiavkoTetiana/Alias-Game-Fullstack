@@ -1,3 +1,5 @@
+import {controller} from "./controller.js";
+
 let timeRemaining = 60;
 let interval = null;
 let isPaused = false;
@@ -12,7 +14,7 @@ function updateTimerDisplay() {
         `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-function startTimer() {
+export function startTimer() {
     if (!interval) {
         interval = setInterval(() => {
             if (timeRemaining > 0) {
@@ -22,6 +24,7 @@ function startTimer() {
                 clearInterval(interval);
                 interval = null;
                 timerElement.textContent = "Час вийшов!";
+                controller.endRound(); //кінець раунду
             }
         }, 1000);
     }
@@ -41,7 +44,6 @@ stopContinue.addEventListener('click', () => {
         stopContinue.textContent = "Стоп";
     }
 });
-startTimer();
 updateTimerDisplay();
 
 

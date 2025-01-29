@@ -1,5 +1,6 @@
-import {readStorage, model} from "./model.js";
+import { model} from "./model.js";
 import {controller} from "./controller.js";
+import {startTimer} from "./timer.js";
 
 
 function renderWords() {
@@ -19,12 +20,16 @@ function renderActiveTeam() {
     document.querySelector("#active-team").textContent = model.teams[model.activeTeamIndex].name;
 }
 
-function startGame(){
+function setupStartButton(){
     const startBtn = document.querySelector("#current-word");
-    startBtn.addEventListener("click", game);
+    startBtn.addEventListener("click", StartGame);
+
 }
 
-function game() {
+function StartGame() {
+    const startBtn = document.querySelector("#current-word");
+    startBtn.removeEventListener("click", StartGame);
+
     const guessButton = document.querySelector("#guess-btn");
     const skipButton = document.querySelector("#skip-btn");
 
@@ -41,13 +46,21 @@ function game() {
         renderWords();
         renderSkipScore();
     });
+    renderWords();
+    startTimer();
+    //намалювати стоп
+
 }
 
-renderWords();
-startGame();
+renderGuessScore();
+renderSkipScore();
+
+setupStartButton();
+
+// renderWords();
+// startGame();
 
 renderActiveTeam();
-controller.endRound();
 
 
 /*

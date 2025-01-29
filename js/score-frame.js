@@ -1,5 +1,5 @@
 import {readStorage, model} from "./model.js";
-import {controller} from "./controller";
+import {controller} from "./controller.js";
 readStorage();
 
 function renderTeamsToPlay(teams) {
