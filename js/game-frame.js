@@ -6,17 +6,22 @@ function renderWords() {
     document.querySelector("#current-word").innerText = controller.getNexWord();
 }
 
-function guessScoreRender() {
+function renderGuessScore() {
     document.querySelector("#guess-score").textContent = "" + model.guessed;
 }
 
-function skipScoreRender() {
+function renderSkipScore() {
     document.querySelector("#skip-score").textContent = "" + model.skip;
 }
 
 
 function renderActiveTeam() {
     document.querySelector("#active-team").textContent = model.teams[model.activeTeamIndex].name;
+}
+
+function startGame(){
+    const startBtn = document.querySelector("#current-word");
+    startBtn.addEventListener("click", game);
 }
 
 function game() {
@@ -28,27 +33,38 @@ function game() {
     guessButton.addEventListener("click", () => {
         controller.addGuess();
         renderWords();
-        guessScoreRender();
+        renderGuessScore();
     });
 
     skipButton.addEventListener("click", () => {
         controller.addSkip();
         renderWords();
-        skipScoreRender();
+        renderSkipScore();
     });
 }
 
-function endRound(){
-    controller.calculateScore();
-    model.skip = 0;
-    model.guessed = 0;
-    //chooseNextTeam();
-}
-
 renderWords();
+startGame();
 
-game();
 renderActiveTeam();
+controller.endRound();
+
+
+/*
+
+-таймер
+-закнчення гри і перехід до рейтингу
+
+-стоп
+-відлік
+
+-завдання для отримання більшої кількості очок?
+
+правила
+словник
+
+
+*/
 
 
 /*

@@ -42,25 +42,25 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background-color: #007bff;
+    background-color: #45474a;
     color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .action-btn:hover {
-    background-color: #0056b3;
+    background-color: #232629;
     transform: scale(1.05);
 }
 
 .separator {
     border: none;
     height: 2px;
-    background-color: #2626e4;
+    background-color: #2e2e37;
     margin: 10px 0;
 }
 
-.word-display {
+.word-display-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,9 +70,13 @@ body {
     font-size: 24px;
     font-weight: bold;
     color: white;
-    background-color: #28a745;
+    background-color: #401717;
     border-radius: 50%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.word-display-btn:hover {
+    background-color: #100505; /* Трохи темніший зелений при наведенні */
 }
 
 .buttons-container {
@@ -116,7 +120,7 @@ body {
 }
 
 .guess-btn {
-    background-color: #28a745;
+    background-color: #090b09;
     color: white;
 
 }

@@ -1,6 +1,6 @@
 .frame {
-  width: 800px;
-  height: 500px;
+  width: 900px;
+  height: 600px;
   border: 2px solid black;
   margin: auto; /* Центрування рамки по горизонталі */
   display: flex;
@@ -17,7 +17,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url("../img/gameField.jpg") no-repeat center center fixed;
+  background: url("../img/мапа3.png") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -29,11 +29,11 @@ body {
 }
 
 .button-main {
-  background-color: #b00;
+  background-color: #650707;
   color: #fff5f5;
-  font-size: 42px;
+  font-size: 48px;
   font-weight: bold;
-  padding: 15px 30px;
+  padding: 25px 45px;
   border-radius: 60px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   position: relative; /* Відносне позиціонування для майбутніх елементів */
@@ -41,24 +41,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between; /* Розташування елементів кнопки по краях */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
 }
 
 .button-ruls {
-  border-color: red;
-  color: black;
+  border-color: #9f0e0e;
+  color: #000000;
+  background-color: white;
   font-size: 20px;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 8px 25px;
   border-radius: 35px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   position: relative;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .button-main:hover {
-  background-color: #d60000;
+  background-color: #8e0d0d;
+  transform: scale(1.05);
+
 }
 
 .button-ruls:hover {
   background-color: #ffffff;
+  transform: scale(1.05);
 }

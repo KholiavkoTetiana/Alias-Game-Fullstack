@@ -10,3 +10,12 @@
     color: #393737;
 }
 
+img {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 55%;
+    height: auto;
+}
+

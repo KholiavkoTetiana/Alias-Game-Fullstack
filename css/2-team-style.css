@@ -1,12 +1,11 @@
-img {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    max-width: 50%;
-    height: auto;
-
-}
+/*img {*/
+/*    position: absolute;*/
+/*    right: 0;*/
+/*    top: 50%;*/
+/*    transform: translateY(-50%);*/
+/*    max-width: 50%;*/
+/*    height: auto;*/
+/*}*/
 
 body {
     font-family: Arial, sans-serif;
@@ -79,7 +78,7 @@ body {
 .plus {
     position: absolute;
     font-size: 40px;
-    background-color: #007bff;
+    background-color: #4c4a4a;
     color: white;
     padding: 5px;
     left: 0;
@@ -90,7 +89,7 @@ body {
 }
 
 .plus:hover {
-    background-color: #0056b3;
+    background-color: #5a5858;
 }
 
 /*.rename-note {*/
@@ -109,7 +108,7 @@ body {
     left: 0;
     width: 55%; /* На всю ширину лівої половини */
     font-size: 25px;
-    background-color: #007bff;
+    background-color: #570f0f;
     color: white;
     padding: 22px 0;
     border: none;
@@ -118,7 +117,7 @@ body {
 }
 
 .next-button:hover {
-    background-color: #0056b3;
+    background-color: #831d1d;
 }
 
 

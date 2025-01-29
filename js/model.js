@@ -58,7 +58,7 @@ export function readStorage(){
 
 export function saveModel(){
     localStorage.setItem("model", JSON.stringify(model));
-
+    console.log(JSON.stringify(model));
 }
 
 readStorage();

@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play Alias</title>
-    <link rel="stylesheet" href="../css/game-style.css">
+    <link rel="stylesheet" href="../css/4-game-style.css">
+    <link rel="stylesheet" href="../css/common-style.css">
+
 </head>
 <body>
 
@@ -13,13 +15,14 @@
     <h2 id="active-team"></h2>
 
     <div class="top-buttons">
-        <p class="action-btn">Стоп</p>
-        <p class="action-btn">Таймер</p>
+        <button id="stop-continue" class="action-btn">Стоп</button>
+        <p id="timer" class="action-btn">01:00</p>
     </div>
 
     <hr class="separator">
 
-    <h1 id="current-word" class="word-display">Слово</h1>
+    <button id="current-word" class="word-display-btn">Почати</button>
+<!--    слова і кнопка для початку гри-->
 
     <div class="buttons-container">
         <div class="button-group">
@@ -33,9 +36,11 @@
     </div>
 </div>
 
-    <img src="../img/gameFieldVer.jpg" alt="Фото приклад">
+    <img src="../img/мапа3.png" alt="Фото приклад">
 
 </body>
     <script type="module" src="../js/game-frame.js"></script>
+    <script type="module" src="../js/timer.js"></script>
+
 
 </html>

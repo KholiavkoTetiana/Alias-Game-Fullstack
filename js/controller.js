@@ -94,9 +94,17 @@ export const controller = {
     },
     calculateScore() {
         this.getActiveTeam().score = model.guessed - model.skip;
-    }
+    },
+    endRound() {
+        controller.calculateScore();
+        model.skip = 0;
+        model.guessed = 0;
+        // chooseNextTeam();
+        saveModel();
+    },
 }
 
+// перевірити чи підходять данні з локст
 
 // const arry = ["1", "2", "3"];
 // arry.splice(1, 1);

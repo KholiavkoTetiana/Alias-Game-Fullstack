@@ -1,11 +1,11 @@
-img {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    max-width: 50%;
-    height: auto;
-}
+/*img {*/
+/*    position: absolute;*/
+/*    right: 0;*/
+/*    top: 50%;*/
+/*    transform: translateY(-50%);*/
+/*    max-width: 50%;*/
+/*    height: auto;*/
+/*}*/
 
 body {
     font-family: Arial, sans-serif;
@@ -67,11 +67,14 @@ h3{
     left: 0;
     width: 55%; /* На всю ширину лівої половини */
     font-size: 30px;
-    background-color: #007bff;
+    background-color: #501212;
     color: white;
     padding: 20px 0;
     border: none;
     cursor: pointer;
+}
+.start-button:hover {
+    background-color: #831d1d;
 }
 
 
