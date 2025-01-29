@@ -1,0 +1,80 @@
+.frame {
+    width: 1000px;
+    height: 700px;
+    border: 2px solid black;
+    margin: auto; /* Центрування рамки по горизонталі */
+    display: flex;
+    justify-content: center; /* Горизонтальне вирівнювання по центру */
+    align-items: center; /* Вертикальне вирівнювання по центру */
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 15px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex; /* Використання flexbox для вирівнювання контенту */
+    min-height: 100vh;
+    background: url("../img/map.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+.container {
+    display: flex; /* Використання flexbox для розташування кнопок */
+    flex-direction: column; /* Розташування кнопок вертикально */
+    gap: 5px;
+}
+
+h1{
+    display: flex; /* Використання flexbox для вирівнювання контенту */
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    margin: 0;
+}
+h3{
+    display: flex; /* Використання flexbox для вирівнювання контенту */
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+p{
+    padding: 0 10% 0 10%;
+    color: white;
+    font-size: 20px;
+}
+
+
+.button-menu{
+    width: 300px;
+    display: flex; /* Використання flexbox для вирівнювання контенту */
+    justify-content: center;
+    align-items: center;
+    /*height: 8px;*/
+    border-color: #9f0e0e;
+    color: #000000;
+    background-color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 35px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+
+}
+
+.button-menu:hover {
+    background-color: #ffffff;
+    transform: scale(0.95);
+}
+
+

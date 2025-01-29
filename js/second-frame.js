@@ -71,9 +71,22 @@ function removeStartMessage() {
 
 removeStartMessage();
 
-function startRound(){ // визначаємо поточну команду
+function startRound() { // визначаємо поточну команду
     const startBtn = document.querySelector("#go-to-score");
     startBtn.addEventListener("click", controller.chooseNextTeam);
 }
 
 startRound();
+
+function checkValidNumOfCommands() {
+    document.getElementById("go-to-score").addEventListener("click", function (event) {
+        if (model.teams.length < 2) {
+            alert("Створіть як мінімум 2 команди");
+            event.preventDefault(); // Забороняє перехід, якщо команд недостатньо
+        } else {
+            window.location.href = "3-score-frame.html";
+        }
+    });
+}
+
+checkValidNumOfCommands();

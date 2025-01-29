@@ -1,71 +1,94 @@
 .frame {
-  width: 900px;
-  height: 600px;
-  border: 2px solid black;
-  margin: auto; /* Центрування рамки по горизонталі */
-  display: flex;
-  justify-content: center; /* Горизонтальне вирівнювання по центру */
-  align-items: center; /* Вертикальне вирівнювання по центру */
-  background-color: rgba(0, 0, 0, 0.84);
-  border-radius: 15px;
+    width: 900px;
+    height: 600px;
+    border: 2px solid black;
+    margin: auto; /* Центрування рамки по горизонталі */
+    display: flex;
+    justify-content: center; /* Горизонтальне вирівнювання по центру */
+    align-items: center; /* Вертикальне вирівнювання по центру */
+    background-color: rgba(0, 0, 0, 0.84);
+    border-radius: 15px;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  display: flex; /* Використання flexbox для вирівнювання контенту */
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: url("../img/мапа3.png") no-repeat center center fixed;
-  background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Використання flexbox для вирівнювання контенту */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("../img/map.jpg") no-repeat center center fixed;
+    background-size: cover;
 }
 
 .button-container {
-  display: flex; /* Використання flexbox для розташування кнопок */
-  flex-direction: column; /* Розташування кнопок вертикально */
-  align-items: center; /* Вирівнювання кнопок по центру горизонтально */
-  gap: 40px;
+    display: flex; /* Використання flexbox для розташування кнопок */
+    flex-direction: column; /* Розташування кнопок вертикально */
+    align-items: center; /* Вирівнювання кнопок по центру горизонтально */
+    gap: 30px;
 }
 
-.button-main {
-  background-color: #650707;
-  color: #fff5f5;
-  font-size: 48px;
-  font-weight: bold;
-  padding: 25px 45px;
-  border-radius: 60px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  position: relative; /* Відносне позиціонування для майбутніх елементів */
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Розташування елементів кнопки по краях */
-  transition: background-color 0.3s ease, transform 0.2s ease;
+.button-play {
+    background-color: #831d1d;
+    color: #fff5f5;
+    font-size: 48px;
+    font-weight: bold;
+    padding: 25px 45px;
+    border-radius: 60px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    position: relative; /* Відносне позиціонування для майбутніх елементів */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Розташування елементів кнопки по краях */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+}
+
+.button-continue {
+    background-color: #ecce1a;
+    color: #151111;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 35px;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    position: relative; /* Відносне позиціонування для майбутніх елементів */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Розташування елементів кнопки по краях */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 
 }
 
 .button-ruls {
-  border-color: #9f0e0e;
-  color: #000000;
-  background-color: white;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 8px 25px;
-  border-radius: 35px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+    border-color: #9f0e0e;
+    color: #000000;
+    background-color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 25px;
+    border-radius: 35px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.button-main:hover {
-  background-color: #8e0d0d;
-  transform: scale(1.05);
+.button-play:hover {
+    background-color: #a81616;
+    transform: scale(1.05);
+
+}
+
+.button-continue:hover {
+    background-color: #e8d245;
+    transform: scale(1.05);
 
 }
 
 .button-ruls:hover {
-  background-color: #ffffff;
-  transform: scale(1.05);
+    background-color: #ffffff;
+    transform: scale(1.05);
 }
