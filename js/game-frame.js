@@ -62,7 +62,6 @@ setupStartButton();
 
 renderActiveTeam();
 
-
 /*
 
 -таймер

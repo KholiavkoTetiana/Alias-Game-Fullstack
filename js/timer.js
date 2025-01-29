@@ -1,6 +1,6 @@
 import {controller} from "./controller.js";
 
-let timeRemaining = 60;
+let timeRemaining = 10;
 let interval = null;
 let isPaused = false;
 
@@ -45,7 +45,6 @@ stopContinue.addEventListener('click', () => {
     }
 });
 updateTimerDisplay();
-
 
 
 

@@ -99,8 +99,10 @@ export const controller = {
         controller.calculateScore();
         model.skip = 0;
         model.guessed = 0;
-        // chooseNextTeam();
+        this.chooseNextTeam();
         saveModel();
+        window.location.href='3-score-frame.html'
+
     },
 }
 
