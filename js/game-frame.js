@@ -33,8 +33,6 @@ function StartGame() {
     const guessButton = document.querySelector("#guess-btn");
     const skipButton = document.querySelector("#skip-btn");
 
-    controller.chooseNextTeam();
-
     guessButton.addEventListener("click", () => {
         controller.addGuess();
         renderWords();
