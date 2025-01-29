@@ -9,10 +9,20 @@
 <body>
     <div class="frame">
         <div class="button-container">
-            <button onclick="window.location.href='2-team-frame.html'" class="button-main">Play Alias</button>
+            <button id="start-new-game" onclick="window.location.href='2-team-frame.html'" class="button-main">Play Alias</button>
             <button  onclick="window.location.href='ruls-frame.html'" class="button-ruls">Rules of the controller</button>
         </div>
     </div>
+
+    <script>
+        function cleanLocalStorage(){
+            localStorage.setItem("model", {});
+            console.log("почистили localStorage");
+        }
+
+        let startNewGame = document.querySelector("#start-new-game");
+        startNewGame.addEventListener("click", cleanLocalStorage)
+    </script>
 </body>
 
 
