@@ -1,4 +1,4 @@
-img {
+.background-img {
     position: absolute;
     right: 0;
     top: 50%;
@@ -146,6 +146,23 @@ body {
     /*left: 0;*/
     /*top: 0;*/
     transition: right 0.5s linear, top 0.5s linear;
+}
+
+#player1 {
+    position: absolute;
+    right: 36%;  /* 1 - 0.82 = 0.18 */
+    top: 13%;
+    width: 20px;
+    height: 20px;
+}
+
+#player2 {
+    position: absolute;
+    right: 36%; /* Ті самі координати */
+    top: 13%;
+    width: 25px;
+    height: 25px;
+    transform: translateX(30px); /* Зсув праворуч, щоб не накладались */
 }
 
 

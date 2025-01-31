@@ -107,8 +107,4 @@ export const controller = {
     },
 }
 
-// перевірити чи підходять данні з локст
-
-// const arry = ["1", "2", "3"];
-// arry.splice(1, 1);
-// console.log(arry);
+// додати Останнє слово.

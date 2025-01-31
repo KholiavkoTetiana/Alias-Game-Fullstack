@@ -1,6 +1,7 @@
 import { model} from "./model.js";
 import {controller} from "./controller.js";
 import {startTimer} from "./timer.js";
+import {map, placePlayer} from "./mapa.js";
 
 
 function renderWords() {
@@ -25,6 +26,22 @@ function setupStartButton(){
     startBtn.addEventListener("click", StartGame);
 
 }
+let playerPosition = model.teams[model.activeTeamIndex].score;
+console.log(`очки поточної команди: ${model.teams[model.activeTeamIndex].score}`)
+function movePlayer(direction){
+    if(direction){
+        if(playerPosition < Object.keys(map).length){
+            playerPosition++;
+        }
+    }else {
+        if(playerPosition > 1){
+            playerPosition--;
+        }
+    }
+    let coords = map[playerPosition];
+    console.log(`розміщуємо гравця на ${playerPosition} (${coords.x}, ${coords.y})`);
+    placePlayer(coords.x, coords.y);
+}
 
 function StartGame() {
     const startBtn = document.querySelector("#current-word");
@@ -37,12 +54,15 @@ function StartGame() {
         controller.addGuess();
         renderWords();
         renderGuessScore();
+        movePlayer(true);
+
     });
 
     skipButton.addEventListener("click", () => {
         controller.addSkip();
         renderWords();
         renderSkipScore();
+        movePlayer(false);
     });
     renderWords();
     startTimer();
@@ -60,43 +80,3 @@ setupStartButton();
 
 renderActiveTeam();
 
-/*
-
--таймер
--закнчення гри і перехід до рейтингу
-
--стоп
--відлік
-
--завдання для отримання більшої кількості очок?
-
-правила
-словник
-
-
-*/
-
-
-/*
-змінювати назву поточної команди
-
-вгадав
-- score ++
-- слово записується в використані слова
-- нове рандомне слово
-
-не вгадав
-- score --
-- слово записується в використані слова
-- нове рандомне слово
-
-
-новий раунд
-- видалити з словника всі використані слова
-
-
-кінець раунду - змінити рейтинг команди
-
-
-
-*/
