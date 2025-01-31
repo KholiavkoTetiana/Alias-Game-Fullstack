@@ -22,7 +22,7 @@
     <hr class="separator">
 
     <button id="current-word" class="word-display-btn">Почати</button>
-<!--    слова і кнопка для початку гри-->
+    <!--    слова і кнопка для початку гри-->
 
     <div class="buttons-container">
         <div class="button-group">
@@ -36,11 +36,14 @@
     </div>
 </div>
 
-    <img src="../img/map.jpg" alt="Фото приклад">
+<img id="game-map" src="../img/map.jpg" alt="Фото приклад">
+<svg id="player" width="25" height="25" style="position: absolute;">
+    <circle cx="12.5" cy="12.5" r="10" fill="red"></circle>
+</svg>
 
 </body>
-    <script type="module" src="../js/game-frame.js"></script>
-    <script type="module" src="../js/timer.js"></script>
-
+<script type="module" src="../js/game-frame.js"></script>
+<script type="module" src="../js/timer.js"></script>
+<script type="module" src="../js/mapa.js"></script>
 
 </html>

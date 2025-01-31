@@ -140,6 +140,14 @@ body {
 }
 
 
+#player {
+    position: absolute;
+    /*transform: translate(-50%, -50%);*/
+    /*left: 0;*/
+    /*top: 0;*/
+    transition: right 0.5s linear, top 0.5s linear;
+}
+
 
 /*body {*/
 /*    font-family: Arial, sans-serif;*/
