@@ -17,6 +17,7 @@ export function placePlayer(xPosition, yPosition, player){
 // placePlayer(.78, .35);
 
 export const map = {
+    0:{x: .80, y: .15},
     1:{x: .78, y: .24},
     2:{x: .78, y: .30},
     3:{x: .78, y: .35},

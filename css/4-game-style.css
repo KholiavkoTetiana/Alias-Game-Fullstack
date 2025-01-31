@@ -144,7 +144,7 @@ body {
 
 .player {
     position: absolute;
-    right: 36%;  /* 1 - 0.82 = 0.18 */
+    right: 36%;
     top: 13%;
     width: 20px;
     height: 20px;

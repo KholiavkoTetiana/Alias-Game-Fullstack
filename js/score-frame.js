@@ -1,5 +1,6 @@
 import {readStorage, model} from "./model.js";
 import {controller} from "./controller.js";
+
 readStorage();
 
 function renderTeamsToPlay(teams) {
@@ -33,6 +34,7 @@ function renderTeamsToPlay(teams) {
 
 
 
+
 function renderActiveTeam(){
     document.querySelector("#active-team").textContent = controller.getActiveTeam().name;
 }
@@ -50,6 +52,8 @@ function teamToPlay(){
 }
 
 teamToPlay();
+initPlayers();
+
 
 //const savedData = localStorage.getItem("model");
 // if (savedData) {

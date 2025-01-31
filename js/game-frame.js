@@ -26,33 +26,42 @@ function setupStartButton(){
     startBtn.addEventListener("click", StartGame);
 
 }
+
+const players = {};
+
 function createPlayer(index){
     const img = document.createElement("img");
     const boardDiv = document.querySelector("#board");
     img.id = "player" + index ;
-    img.src = "../img/fireman.png";
+    img.src = `../players/${index}.png`; // назва з індексом
     img.classList.add("player");
-    img.style.transform = `transformX(${30 *index}px)`;
+
+    img.style.transform = `translateX(${30 * index}px)`;
     boardDiv.appendChild(img);
+
+    let playerPosition = model.teams[index].score;
+    let coords = map[playerPosition];
+    placePlayer(coords.x, coords.y, img);
+
     return img;
 }
 
-const player = createPlayer(1);
+function initPlayers() {
+    model.teams.forEach((team, index) => {
+        players[team.name] = createPlayer(index);
+        console.log(`створюємо ${index} гравця ${players[team.name]}`)
+    });
+
+}
+
+function movePlayer(){
+    const activeTeam = model.teams[model.activeTeamIndex]; // Отримуємо активну команду
+    const player = players[activeTeam.name]; // Повертаємо гравця відповідної команди
 
 
+    let playerPosition = model.teams[model.activeTeamIndex].score + model.guessed - model.skip;
+    console.log(`очки поточної команди: ${model.teams[model.activeTeamIndex].score}`)
 
-let playerPosition = model.teams[model.activeTeamIndex].score;
-console.log(`очки поточної команди: ${model.teams[model.activeTeamIndex].score}`)
-function movePlayer(direction){
-    if(direction){
-        if(playerPosition < Object.keys(map).length){
-            playerPosition++;
-        }
-    }else {
-        if(playerPosition > 1){
-            playerPosition--;
-        }
-    }
     let coords = map[playerPosition];
     console.log(`розміщуємо гравця на ${playerPosition} (${coords.x}, ${coords.y})`);
     placePlayer(coords.x, coords.y, player);
@@ -69,7 +78,7 @@ function StartGame() {
         controller.addGuess();
         renderWords();
         renderGuessScore();
-        movePlayer(true);
+        movePlayer();
 
     });
 
@@ -77,7 +86,7 @@ function StartGame() {
         controller.addSkip();
         renderWords();
         renderSkipScore();
-        movePlayer(false);
+        movePlayer();
     });
     renderWords();
     startTimer();
@@ -94,4 +103,5 @@ setupStartButton();
 // startGame();
 
 renderActiveTeam();
+initPlayers();
 
