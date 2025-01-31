@@ -1,6 +1,5 @@
-export function placePlayer(xPosition, yPosition){
+export function placePlayer(xPosition, yPosition, player){
     const field = document.querySelector("#game-map");
-    const player = document.querySelector("#player");
 
     const x = field.clientWidth * xPosition;
     const y = field.clientHeight * yPosition;

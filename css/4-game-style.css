@@ -140,15 +140,9 @@ body {
 }
 
 
-#player {
-    position: absolute;
-    /*transform: translate(-50%, -50%);*/
-    /*left: 0;*/
-    /*top: 0;*/
-    transition: right 0.5s linear, top 0.5s linear;
-}
 
-#player1 {
+
+.player {
     position: absolute;
     right: 36%;  /* 1 - 0.82 = 0.18 */
     top: 13%;

@@ -26,6 +26,21 @@ function setupStartButton(){
     startBtn.addEventListener("click", StartGame);
 
 }
+function createPlayer(index){
+    const img = document.createElement("img");
+    const boardDiv = document.querySelector("#board");
+    img.id = "player" + index ;
+    img.src = "../img/fireman.png";
+    img.classList.add("player");
+    img.style.transform = `transformX(${30 *index}px)`;
+    boardDiv.appendChild(img);
+    return img;
+}
+
+const player = createPlayer(1);
+
+
+
 let playerPosition = model.teams[model.activeTeamIndex].score;
 console.log(`очки поточної команди: ${model.teams[model.activeTeamIndex].score}`)
 function movePlayer(direction){
@@ -40,7 +55,7 @@ function movePlayer(direction){
     }
     let coords = map[playerPosition];
     console.log(`розміщуємо гравця на ${playerPosition} (${coords.x}, ${coords.y})`);
-    placePlayer(coords.x, coords.y);
+    placePlayer(coords.x, coords.y, player);
 }
 
 function StartGame() {
