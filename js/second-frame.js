@@ -1,5 +1,7 @@
 import {readStorage, model} from "./model.js";
 import {controller} from "./controller.js";
+import {initPlayers} from "./mapa.js";
+
 
 readStorage();
 
@@ -90,3 +92,4 @@ function checkValidNumOfCommands() {
 }
 
 checkValidNumOfCommands();
+initPlayers();

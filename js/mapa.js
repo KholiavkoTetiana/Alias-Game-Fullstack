@@ -1,3 +1,5 @@
+import {model} from "./model.js";
+
 export function placePlayer(xPosition, yPosition, player){
     const field = document.querySelector("#game-map");
 
@@ -11,6 +13,33 @@ export function placePlayer(xPosition, yPosition, player){
     console.log(x, y)
 
 }
+
+function createPlayer(index){
+    const img = document.createElement("img");
+    const boardDiv = document.querySelector("#board");
+    img.id = "player" + index ;
+    img.src = `../players/${index}.png`; // назва з індексом
+    img.classList.add("player");
+
+    img.style.transform = `translateX(${10 * index}px)`;
+    boardDiv.appendChild(img);
+
+    let playerPosition = model.teams[index].score;
+    let coords = map[playerPosition];
+    placePlayer(coords.x, coords.y, img);
+
+    return img;
+}
+export const players = {};
+
+export function initPlayers() {
+    model.teams.forEach((team, index) => {
+        players[team.name] = createPlayer(index);
+        console.log(`створюємо ${index} гравця ${players[team.name]}`)
+    });
+
+}
+
 //
 // placePlayer(.78, .24);
 // placePlayer(.78, .28);

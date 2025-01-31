@@ -1,5 +1,6 @@
 import {readStorage, model} from "./model.js";
 import {controller} from "./controller.js";
+import {initPlayers} from "./mapa.js";
 
 readStorage();
 
@@ -52,11 +53,5 @@ function teamToPlay(){
 }
 
 teamToPlay();
+
 initPlayers();
-
-
-//const savedData = localStorage.getItem("model");
-// if (savedData) {
-//     const model = JSON.parse(savedData);
-//     console.log(model.teams);
-// }

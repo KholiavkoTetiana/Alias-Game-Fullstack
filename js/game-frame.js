@@ -1,7 +1,7 @@
 import { model} from "./model.js";
 import {controller} from "./controller.js";
 import {startTimer} from "./timer.js";
-import {map, placePlayer} from "./mapa.js";
+import {initPlayers, map, placePlayer, players} from "./mapa.js";
 
 
 function renderWords() {
@@ -27,32 +27,8 @@ function setupStartButton(){
 
 }
 
-const players = {};
 
-function createPlayer(index){
-    const img = document.createElement("img");
-    const boardDiv = document.querySelector("#board");
-    img.id = "player" + index ;
-    img.src = `../players/${index}.png`; // назва з індексом
-    img.classList.add("player");
 
-    img.style.transform = `translateX(${30 * index}px)`;
-    boardDiv.appendChild(img);
-
-    let playerPosition = model.teams[index].score;
-    let coords = map[playerPosition];
-    placePlayer(coords.x, coords.y, img);
-
-    return img;
-}
-
-function initPlayers() {
-    model.teams.forEach((team, index) => {
-        players[team.name] = createPlayer(index);
-        console.log(`створюємо ${index} гравця ${players[team.name]}`)
-    });
-
-}
 
 function movePlayer(){
     const activeTeam = model.teams[model.activeTeamIndex]; // Отримуємо активну команду

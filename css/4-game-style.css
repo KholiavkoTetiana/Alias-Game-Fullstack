@@ -142,22 +142,6 @@ body {
 
 
 
-.player {
-    position: absolute;
-    right: 36%;
-    top: 13%;
-    width: 20px;
-    height: 20px;
-}
-
-#player2 {
-    position: absolute;
-    right: 36%; /* Ті самі координати */
-    top: 13%;
-    width: 25px;
-    height: 25px;
-    transform: translateX(30px); /* Зсув праворуч, щоб не накладались */
-}
 
 
 /*body {*/

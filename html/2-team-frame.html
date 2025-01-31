@@ -9,35 +9,37 @@
 
 </head>
 <body>
-    <h1 class="team-head">Команди </h1>
+<h1 class="team-head">Команди </h1>
 
-    <p class="start-message" id="start-message"> Створіть як мінімум 2 команди</p>
+<p class="start-message" id="start-message"> Створіть як мінімум 2 команди</p>
 
-    <div id="teams-div" >
-        <div class="team-item">
-            <p>Команда 1</p>
-            <button class="delete-btn">×</button>
-        </div>
-        <div class="team-item">
-            <p>Команда 2</p>
-            <button class="delete-btn">×</button>
-        </div>
+<div id="teams-div">
+    <div class="team-item">
+        <p>Команда 1</p>
+        <button class="delete-btn">×</button>
     </div>
+    <div class="team-item">
+        <p>Команда 2</p>
+        <button class="delete-btn">×</button>
+    </div>
+</div>
 
-    <input type="text" id="new-team-inp" class="team-input" placeholder="Ввдіть назву команди">
+<input type="text" id="new-team-inp" class="team-input" placeholder="Ввдіть назву команди">
 
-    <button class="plus" id="add-team-btn">+</button>
+<button class="plus" id="add-team-btn">+</button>
 
 <!--    <button class="rename-note" ondblclick="renameAllTeams()" >Для зміни назви команди клацніть двічі</button>-->
 
-    <button id="go-to-score"  class="next-button">Далі</button>
+<button id="go-to-score" class="next-button">Далі</button>
 
-    <img src="../img/map.jpg" alt="Фото приклад">
+<div id="board">
+
+    <img id="game-map" class="background-img" src="../img/map.jpg" alt="Фото приклад">
+</div>
 </body>
-    <script type="module" src="../js/model.js"></script>
-    <script type="module" src="../js/controller.js"></script>
-    <script type="module" src="../js/second-frame.js"></script>
-
+<script type="module" src="../js/model.js"></script>
+<script type="module" src="../js/controller.js"></script>
+<script type="module" src="../js/second-frame.js"></script>
 
 
 </html>
