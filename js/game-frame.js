@@ -70,6 +70,8 @@ function StartGame() {
 
 }
 
+
+
 renderGuessScore();
 renderSkipScore();
 

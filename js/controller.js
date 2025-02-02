@@ -96,6 +96,7 @@ export const controller = {
         this.getActiveTeam().score += model.guessed - model.skip;
     },
     endRound() {
+
         this.calculateScore();
         model.skip = 0;
         model.guessed = 0;

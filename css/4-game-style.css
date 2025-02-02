@@ -46,6 +46,7 @@ body {
     color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.2s ease;
+
 }
 
 .action-btn:hover {
@@ -140,7 +141,19 @@ body {
 }
 
 
+.last-word{
+    flex-direction: column; /* Елементи розташовуються вертикально */
+    align-items: center; /* Вирівнювання по центру */
+    font-size: 20px;
+    padding: 10px 100px;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    margin-left: 20px;
+    box-shadow: 0px 2px 4px rgb(39, 34, 34);
+    display: none;
 
+}
 
 
 
