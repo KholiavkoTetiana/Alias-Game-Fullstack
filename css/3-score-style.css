@@ -62,7 +62,6 @@ body {
 }
 
 .round p{
-    padding-top: 55px;
     margin: 0;
     font-size: 28px;
     font-weight: bold;
@@ -76,8 +75,12 @@ h3{
 /* Оновлений hexagon */
 .hexagon {
     display: flex;
-    width: 320px;
-    height: 150px;
+    flex-direction: column;
+    justify-content: center; /* Вирівнюємо елементи в div */
+    align-items: center; /* Вирівнюємо по вертикалі */
+    width: 400px;
+    margin-top: 55px;
+    /*height: 150px;*/
     background-color: transparent; /* Прибираємо фон */
     border: 5px solid #090b09; /* Додаємо контур */
 
