@@ -54,13 +54,6 @@ body {
     transform: scale(1.05);
 }
 
-.separator {
-    border: none;
-    height: 2px;
-    background-color: #2e2e37;
-    margin: 10px 0;
-}
-
 .word-display-btn {
     display: flex;
     justify-content: center;

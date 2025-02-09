@@ -1,40 +1,48 @@
-/*img {*/
-/*    position: absolute;*/
-/*    right: 0;*/
-/*    top: 50%;*/
-/*    transform: translateY(-50%);*/
-/*    max-width: 50%;*/
-/*    height: auto;*/
-/*}*/
-
 body {
     font-family: Arial, sans-serif;
-
+    margin-top: 100px;
 }
 
+.team-head {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 24px;
+    color: #faf8f8;
+}
 
-/*.team {*/
-/*    padding: 0 10px;*/
-/*    font-size: 20px;*/
-/*    color: #831d1d;*/
-/*    left: 0;*/
-/*    !*margin-right: 10px;*!*/
-/*    !*display: inline-flex;*!*/
-/*}*/
+.top-container {
+    position: absolute;
+    justify-content: space-between; /* Простір між кнопками */
+    top: 0;
+    left: 0;
+    width: 52%;
+    height: 60px;
+    background-color: #570f0f;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.back-button{
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #f8f7f7;
+}
+
+.back:hover {
+    color: #000;
+}
+
 
 .one-line {
     display: inline-flex; /* Використання флексбоксу для вирівнювання */
     /*align-items: center; !* Вирівнювання тексту по вертикалі *!*/
 }
-
-/*h2,h4 {*/
-/*    top: 60px;*/
-/*    width: 50%;*/
-
-/*    align-items: center; !* Вирівнюємо по вертикалі *!*/
-/*    text-align: center;*/
-/*    color: #333;*/
-/*}*/
 
 .round{
     /*top: 60px;*/
@@ -46,9 +54,15 @@ body {
     margin: 0;
     padding: 10px;
 }
+.round h2{
+    color: #601010;
+    font-weight: revert;
+    margin: 0;
+
+}
 
 .round p{
-    padding-top: 15px;
+    padding-top: 55px;
     margin: 0;
     font-size: 28px;
     font-weight: bold;
@@ -58,6 +72,56 @@ h3{
     font-weight: bold;
     color: #888888;
 }
+
+/* Оновлений hexagon */
+.hexagon {
+    display: flex;
+    width: 320px;
+    height: 150px;
+    background-color: transparent; /* Прибираємо фон */
+    border: 5px solid #090b09; /* Додаємо контур */
+
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); /* Додаємо тінь */
+}
+
+/*.hexagon {*/
+/*    display: flex;*/
+/*    justify-content: center; !* Вирівнюємо елементи в div *!*/
+/*    align-items: center; !* Вирівнюємо по вертикалі *!*/
+/*    !*top: 48%;*!*/
+/*    !*left: 15%;*!*/
+/*    transform: translateY(-50%);*/
+/*    width: 320px;*/
+/*    height: 150px;*/
+/*    background-color: transparent; !* Прибираємо заливку *!*/
+/*    z-index: -1; !* Розміщення під іншими елементами *!*/
+
+
+/*    !* Використовуємо відносне позиціонування для псевдоелемента *!*/
+/*    !*position: relative;*!*/
+/*}*/
+
+/*.hexagon::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-color: transparent;*/
+/*    border: 5px solid #090b09; !* Колір контуру *!*/
+
+/*    !* Створюємо шестикутник *!*/
+/*    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);*/
+
+/*    !* Додаємо тінь *!*/
+/*    box-shadow: 80px 80px 150px rgba(0, 0, 0, 10%);*/
+
+/*    !* Центруємо *!*/
+/*    !*top: 0;*!*/
+/*    !*left: 0;*!*/
+/*}*/
+
 
 
 
@@ -77,9 +141,59 @@ h3{
     background-color: #831d1d;
 }
 
+/*.half-circle-trapezoid {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 55vw; !* Половина ширини екрану *!*/
+/*    height: 250px; !* Висота фігури *!*/
+/*    background-color: #e0e0e0; !* Колір *!*/
+
+/*    clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);*/
+/*    z-index: -1; !* Опускає елемент під інші *!*/
+
+/*}*/
+/*.half-circle {*/
+/*    position: absolute;*/
+/*    margin: 0;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 55vw; !* Половина сторінки *!*/
+/*    height: 300px; !* Висота *!*/
+/*    background-color: #e0e0e0;*/
+/*    border-bottom-left-radius: 150px;*/
+/*    border-bottom-right-radius: 150px;*/
+/*    z-index: -1; !* Розміщення під іншими елементами *!*/
+/*}*/
+
 
 
 /* команда1    × */
+
+/*.team-item {*/
+/*    display: flex;*/
+/*    justify-content: space-between; !* Розтягує елементи між краями *!*/
+/*    align-items: center; !* Вирівнює елементи по вертикалі *!*/
+/*    width: 100%; !* Забезпечує однакову ширину *!*/
+/*    padding: 10px 20px;*/
+/*    margin-bottom: 15px;*/
+/*    font-size: 25px;*/
+/*    color: #000009;*/
+/*}*/
+
+/*.team-item p {*/
+/*    margin: 0;*/
+/*}*/
+
+/*.team-name {*/
+/*    flex-grow: 1; !* Дозволяє назві займати всю доступну ширину *!*/
+/*    text-align: left; !* Вирівнює текст назви вліво *!*/
+/*}*/
+
+/*.score {*/
+/*    min-width: 40px; !* Мінімальна ширина для цифр, щоб вони були вирівняні *!*/
+/*    text-align: right; !* Вирівнює текст рахунку праворуч *!*/
+/*}*/
 #team-to-play-div {
     display: flex;
     flex-direction: column; /* Елементи всередині "team-to-play-div" йдуть в стовпчик */
@@ -89,18 +203,19 @@ h3{
 
 .team-item {
     display: flex;
-    /*flex-direction: column; !* Елементи в стовпчик *!*/
-    align-items: flex-start; /* Вирівнювання по лівому краю */
-    padding: 10px 10px;
-    margin-bottom: 15px;
+    justify-content: space-between; /* Розтягує елементи між краями */
+    align-items: center; /* Вирівнювання по лівому краю */
+    width: 40%;
+    padding: 5px 80px;
+    margin-bottom: 5px;
     font-size: 25px;
-    color: #2626e4;
+    color: #000000;
+    font-weight: bold;
+
 }
 
 .team-item p {
     margin: 20px;
 }
 
-
-
-/* команда1    × */
+/*!* команда1    × *!*/

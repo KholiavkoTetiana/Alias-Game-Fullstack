@@ -1,26 +1,45 @@
-/*img {*/
-/*    position: absolute;*/
-/*    right: 0;*/
-/*    top: 50%;*/
-/*    transform: translateY(-50%);*/
-/*    max-width: 50%;*/
-/*    height: auto;*/
-/*}*/
-
 body {
     font-family: Arial, sans-serif;
+    margin-top: 100px;
+
 }
 
 .team-head {
-    top: 60px;
-    width: 55%;
-    text-align: center;
-    color: #333;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
 
+    font-size: 24px;
+    color: #ffffff;
 }
 
+.top-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 52%;
+    height: 60px;
+    background-color: #570f0f;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
 
-.start-message{
+.back-button{
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #faf7f7;
+}
+
+.back:hover {
+    color: #000;
+}
+
+.start-message {
     padding: 10px 30px;
     margin-bottom: 15px;
     font-size: 15px;
@@ -62,7 +81,7 @@ body {
 
 /* команда1    × */
 
-.team-input{
+.team-input {
     padding: 10px 300px;
     margin-bottom: 15px;
     margin-top: 10px;
@@ -92,22 +111,13 @@ body {
     background-color: #5a5858;
 }
 
-/*.rename-note {*/
-/*    position: absolute;*/
-/*    bottom: 70px; !* Трохи вище кнопки "Далі" *!*/
-/*    left: 0;*/
-/*    width: 50%; !* На лівій половині *!*/
-/*    text-align: center;*/
-/*    color: #888888;*/
-/*}*/
-
-
 .next-button {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 55%; /* На всю ширину лівої половини */
     font-size: 25px;
+    /*font-weight: bold;*/
     background-color: #570f0f;
     color: white;
     padding: 22px 0;

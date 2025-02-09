@@ -9,19 +9,26 @@
     <link rel="stylesheet" href="../css/common-style.css">
 </head>
 <body>
-<h1 class="team-head">Рейтинг команд</h1>
+
+<div class="top-container">
+    <button onclick="window.location.href='2-team-frame.html'" class="back-button">< Команди</button>
+    <h1 class="team-head">Рейтинг команд</h1>
+    <p style="color: white"> 👑 60</p>
+</div>
 
 <div id="team-to-play-div">
     <div class="team-item">
-        <!--            <p>Команда 1: </p>-->
-        <!--            <p class="score"> 0</p>-->
+        <!--<p>Команда 1: </p>-->
+        <!--<p class="score"> 0</p>-->
     </div>
 
     <div class="team-item">
-        <!--            <p>Команда 2: </p>-->
-        <!--            <p class="score"> 0</p>-->
+        <!--<p>Команда 2: </p>-->
+        <!--<p class="score"> 0</p>-->
     </div>
 </div>
+<!--<div class="half-circle-trapezoid"></div>-->
+<!--<div class="half-circle"></div>-->
 
 <div>
     <div class="round">
@@ -29,17 +36,21 @@
         <p id="current-round"></p>
     </div>
     <h3 class="round">Готуються до гри</h3>
-    <h2 id="active-team" class="round"></h2>
+    <div class="round">
+        <h2 id="active-team" ></h2>
+    </div>
     <!--        команда-->
+    <div class="hexagon"></div>
 
-</div>
+
+<!--</div>-->
 
 <button onclick="window.location.href='4-game-frame.html'" class="start-button">Почати гру</button>
 
 <div id="board">
-
     <img id="game-map" class="background-img" src="../img/map.jpg" alt="Фото приклад">
 </div>
+
 </body>
 <script type="module" src="../js/score-frame.js"></script>
 <script type="module" src="../js/model.js"></script>
