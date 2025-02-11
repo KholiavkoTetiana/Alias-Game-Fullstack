@@ -55,6 +55,7 @@ function StartGame() {
         renderWords();
         renderGuessScore();
         movePlayer();
+        controller.win();
 
     });
 
