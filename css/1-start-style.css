@@ -1,3 +1,4 @@
+
 .frame {
     width: 900px;
     height: 600px;
@@ -10,6 +11,15 @@
     border-radius: 15px;
 }
 
+.first-background-img{
+    position: absolute;
+    width: 100%;
+    transform: translateY(18%);
+    /*max-width: 55%;*/
+    height: auto;
+    z-index: -1; /* Розміщення під іншими елементами */
+
+}
 body {
     margin: 0;
     padding: 0;
@@ -17,7 +27,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("../img/map.jpg") no-repeat center center fixed;
+    /*background: url("../img/alias-map.png") no-repeat center center fixed ;*/
     background-size: cover;
 }
 

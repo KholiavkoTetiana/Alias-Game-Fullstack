@@ -17,7 +17,7 @@ body {
     justify-content: space-between; /* Простір між кнопками */
     top: 0;
     left: 0;
-    width: 52%;
+    width: 50%;
     height: 60px;
     background-color: #570f0f;
     display: flex;
@@ -40,16 +40,14 @@ body {
 
 
 .one-line {
-    display: inline-flex; /* Використання флексбоксу для вирівнювання */
-    /*align-items: center; !* Вирівнювання тексту по вертикалі *!*/
+    display: inline-flex;
 }
 
 .round{
-    /*top: 60px;*/
     display: flex;
     width: 50%;
-    justify-content: center; /* Вирівнюємо елементи в div */
-    align-items: center; /* Вирівнюємо по вертикалі */
+    justify-content: center;
+    align-items: center;
     gap: 15px;
     margin: 0;
     padding: 10px;
@@ -63,70 +61,29 @@ body {
 
 .round p{
     margin: 0;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: bold;
 }
 h3{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #888888;
 }
 
-/* Оновлений hexagon */
 .hexagon {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Вирівнюємо елементи в div */
-    align-items: center; /* Вирівнюємо по вертикалі */
-    width: 400px;
-    margin-top: 55px;
-    /*height: 150px;*/
-    background-color: transparent; /* Прибираємо фон */
-    border: 5px solid #090b09; /* Додаємо контур */
+    justify-content: center;
+    align-items: center;
+    width: 320px;
+    margin-top: 65px;
+    background-color: transparent;
+    border: 5px solid #090b09;
 
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); /* Додаємо тінь */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
-
-/*.hexagon {*/
-/*    display: flex;*/
-/*    justify-content: center; !* Вирівнюємо елементи в div *!*/
-/*    align-items: center; !* Вирівнюємо по вертикалі *!*/
-/*    !*top: 48%;*!*/
-/*    !*left: 15%;*!*/
-/*    transform: translateY(-50%);*/
-/*    width: 320px;*/
-/*    height: 150px;*/
-/*    background-color: transparent; !* Прибираємо заливку *!*/
-/*    z-index: -1; !* Розміщення під іншими елементами *!*/
-
-
-/*    !* Використовуємо відносне позиціонування для псевдоелемента *!*/
-/*    !*position: relative;*!*/
-/*}*/
-
-/*.hexagon::before {*/
-/*    content: "";*/
-/*    position: absolute;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    background-color: transparent;*/
-/*    border: 5px solid #090b09; !* Колір контуру *!*/
-
-/*    !* Створюємо шестикутник *!*/
-/*    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);*/
-
-/*    !* Додаємо тінь *!*/
-/*    box-shadow: 80px 80px 150px rgba(0, 0, 0, 10%);*/
-
-/*    !* Центруємо *!*/
-/*    !*top: 0;*!*/
-/*    !*left: 0;*!*/
-/*}*/
-
-
-
 
 .start-button{
     position: absolute;
@@ -142,83 +99,39 @@ h3{
 }
 .start-button:hover {
     background-color: #831d1d;
-}
-
-/*.half-circle-trapezoid {*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    width: 55vw; !* Половина ширини екрану *!*/
-/*    height: 250px; !* Висота фігури *!*/
-/*    background-color: #e0e0e0; !* Колір *!*/
-
-/*    clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);*/
-/*    z-index: -1; !* Опускає елемент під інші *!*/
-
-/*}*/
-/*.half-circle {*/
-/*    position: absolute;*/
-/*    margin: 0;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    width: 55vw; !* Половина сторінки *!*/
-/*    height: 300px; !* Висота *!*/
-/*    background-color: #e0e0e0;*/
-/*    border-bottom-left-radius: 150px;*/
-/*    border-bottom-right-radius: 150px;*/
-/*    z-index: -1; !* Розміщення під іншими елементами *!*/
-/*}*/
-
-
-
-/* команда1    × */
-
-/*.team-item {*/
-/*    display: flex;*/
-/*    justify-content: space-between; !* Розтягує елементи між краями *!*/
-/*    align-items: center; !* Вирівнює елементи по вертикалі *!*/
-/*    width: 100%; !* Забезпечує однакову ширину *!*/
-/*    padding: 10px 20px;*/
-/*    margin-bottom: 15px;*/
-/*    font-size: 25px;*/
-/*    color: #000009;*/
-/*}*/
-
-/*.team-item p {*/
-/*    margin: 0;*/
-/*}*/
-
-/*.team-name {*/
-/*    flex-grow: 1; !* Дозволяє назві займати всю доступну ширину *!*/
-/*    text-align: left; !* Вирівнює текст назви вліво *!*/
-/*}*/
-
-/*.score {*/
-/*    min-width: 40px; !* Мінімальна ширина для цифр, щоб вони були вирівняні *!*/
-/*    text-align: right; !* Вирівнює текст рахунку праворуч *!*/
-/*}*/
-#team-to-play-div {
-    display: flex;
-    flex-direction: column; /* Елементи всередині "team-to-play-div" йдуть в стовпчик */
-    margin-top: 10px;
-    max-width: 50%; /* відступ від команди до кнопки */
-}
+}#team-to-play-div {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start; /* Вирівнюємо блок по лівому краю */
+     margin-top: 10px;
+     width: 50vw; /* Ліва половина екрана */
+ }
 
 .team-item {
     display: flex;
-    justify-content: space-between; /* Розтягує елементи між краями */
-    align-items: center; /* Вирівнювання по лівому краю */
-    width: 40%;
-    padding: 5px 80px;
-    margin-bottom: 5px;
+    align-items: center;
+    justify-content: space-between; /* Рівномірний розподіл по ширині */
+    width: 100%; /* Розтягуємо на всю ширину контейнера */
+    padding: 10px 80px;
     font-size: 25px;
     color: #000000;
     font-weight: bold;
-
+    box-sizing: border-box;
 }
 
-.team-item p {
-    margin: 20px;
+.team-name {
+    flex: 1;
+    text-align: left;
 }
 
-/*!* команда1    × *!*/
+.score {
+    flex: 0.3;
+    text-align: center;
+}
+
+.winner {
+    flex: 1;
+    text-align: right;
+    color: #570f0f;
+    visibility: hidden;
+}

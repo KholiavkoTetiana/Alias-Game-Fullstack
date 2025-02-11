@@ -1,23 +1,16 @@
-.background-img {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    max-width: 50%;
-    height: auto;
-}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     display: flex;
-    justify-content: flex-start; /* Вирівнюємо вміст ліворуч */
+    justify-content: flex-start;
     align-items: flex-start;
     height: 100vh;
-    background-color: #f8f9fa; /* Світлий фон */
+    background-color: #f8f9fa;
 }
 
 .left-container {
-    width: 50%; /* Ліва половина екрана */
+    width: 50%;
     padding: 20px;
 }
 
@@ -31,7 +24,7 @@ body {
 
 .top-buttons {
     display: flex;
-    justify-content: space-between; /* Кнопки з обох боків */
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
@@ -60,7 +53,7 @@ body {
     align-items: center;
     width: 200px;
     height: 200px;
-    margin: 120px auto 10px; /* В центрі сторінки */
+    margin: 120px auto 10px;
     font-size: 24px;
     font-weight: bold;
     color: white;
@@ -70,7 +63,7 @@ body {
 }
 
 .word-display-btn:hover {
-    background-color: #100505; /* Трохи темніший зелений при наведенні */
+    background-color: #100505;
 }
 
 .buttons-container {
@@ -79,19 +72,19 @@ body {
     left: 0;
     width: 50%;
     display: flex;
-    justify-content: space-between; /* Простір між кнопками */
-    align-items: center; /* Вирівнювання по вертикалі */
-    padding: 30px; /* Відступи для простору */
-    background-color: #f8f9fa; /* Легка заливка фону */
-    border-top: 2px solid #ddd; /* Верхній бордер для стилю */
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-top: 2px solid #ddd;
 
 }
 
 .button-group {
     display: flex;
-    flex-direction: column; /* Елементи розташовуються вертикально */
-    align-items: center; /* Вирівнювання по центру */
-    gap: 10px; /* Відступ між елементами */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .score {
@@ -120,23 +113,23 @@ body {
 }
 
 .guess-btn:hover {
-    background-color: #218838; /* Трохи темніший зелений при наведенні */
+    background-color: #a81616;
 }
 
 .skip-btn {
-    background-color: #831d1d; /* Жовтий колір для "Пропущено" */
+    background-color: #831d1d;
     color: white;
     margin-right: 20px;
 }
 
 .skip-btn:hover {
-    background-color: #ac1818; /* Трохи темніший жовтий при наведенні */
+    background-color: #ac1818;
 }
 
 
 .last-word{
-    flex-direction: column; /* Елементи розташовуються вертикально */
-    align-items: center; /* Вирівнювання по центру */
+    flex-direction: column;
+    align-items: center;
     font-size: 20px;
     padding: 10px 100px;
     border: none;
@@ -148,94 +141,24 @@ body {
 
 }
 
+.win-massage {
+    position: fixed; /* Фіксуємо поверх всього */
+    /*width: 50%; !* Ширина, можна зменшити за потреби *!*/
+    top: 30%; /* Центруємо по вертикалі */
+    left: 15%; /* Центруємо по лівій половині екрану */
+    transform: translateY(-50%); /* Вирівнюємо центр */
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-/*body {*/
-/*    font-family: Arial, sans-serif;*/
-/*}*/
+    font-size: 100px;
+    font-weight: bold;
+    border-color: #090b09;
+    color: #730707;
 
-/*.top{*/
-/*    top: 60px;*/
-/*    width: 50%;*/
-/*    text-align: center;*/
-/*    color: #333;*/
-/*}*/
+    z-index: 9999; /* Поверх усіх */
+    pointer-events: none; /* Не блокує кліки на нижні елементи */
 
-/*.words{*/
-/*    width: 50%;*/
-/*    margin: 0;*/
-/*    display: flex;*/
-/*    justify-content: center; !* Горизонтальне вирівнювання по центру *!*/
-/*    align-items: center; !* Вертикальне вирівнювання по центру *!*/
-/*    background-color: blueviolet;*/
-/*}*/
-
-/*.bottom{*/
-/*    bottom: 0;*/
-/*    width: 50%;*/
-/*    text-align: center;*/
-/*    color: #333;*/
-/*}*/
-
-/*body {*/
-/*    font-family: Arial, sans-serif;*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*}*/
-
-/*.buttons-container {*/
-/*    position: absolute;*/
-/*    bottom: 15px; !* Розміщення внизу *!*/
-/*    !*left: 0; !* Ліва половина сторінки *!*!*/
-/*    width: 50%; !* Займає ліву половину *!*/
-/*    display: flex; !* Використовуємо flexbox для вирівнювання *!*/
-/*    justify-content: space-between; !* Простір між кнопками *!*/
-/*    align-items: center; !* Вирівнювання по вертикалі *!*/
-/*    padding: 30px; !* Відступи для простору *!*/
-/*    background-color: #f8f9fa; !* Легка заливка фону *!*/
-/*    border-top: 2px solid #ddd; !* Верхній бордер для стилю *!*/
-/*}*/
-
-/*.button-group {*/
-/*    display: flex;*/
-/*    flex-direction: column; !* Елементи розташовуються вертикально *!*/
-/*    align-items: center; !* Вирівнювання по центру *!*/
-/*    gap: 10px; !* Відступ між елементами *!*/
-/*}*/
-
-/*.score {*/
-/*    font-size: 25px;*/
-/*    font-weight: bold;*/
-/*    color: #333;*/
-/*    margin: 0;*/
-/*}*/
-
-/*.guess-btn, .skip-btn {*/
-/*    font-size: 25px;*/
-/*    padding: 15px 80px;*/
-/*    border: none;*/
-/*    border-radius: 8px;*/
-/*    cursor: pointer;*/
-/*    transition: background-color 0.3s ease;*/
-/*    margin-left: 20px;*/
-/*}*/
-
-/*.guess-btn {*/
-/*    background-color: #28a745;*/
-/*    color: white;*/
-
-/*}*/
-
-/*.guess-btn:hover {*/
-/*    background-color: #218838; !* Трохи темніший зелений при наведенні *!*/
-/*}*/
-
-/*.skip-btn {*/
-/*    background-color: #831d1d; !* Жовтий колір для "Пропущено" *!*/
-/*    color: white;*/
-/*    margin-right: 20px;*/
-/*}*/
-
-/*.skip-btn:hover {*/
-/*    background-color: #ac1818; !* Трохи темніший жовтий при наведенні *!*/
-/*}*/
+    display: none; /* Початково приховано */
+}

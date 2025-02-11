@@ -46,15 +46,14 @@ body {
     color: #888888;
 }
 
-/* команда1    × */
 #teams-div {
     margin-top: 30px;
-    max-width: 30%; /* відступ від команди до кнопки */
+    max-width: 30%;
 }
 
 .team-item {
     display: flex;
-    justify-content: space-between; /* Простір між назвою і кнопкою */
+    justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
     margin-bottom: 15px;
@@ -79,10 +78,9 @@ body {
     background-color: #e60000;
 }
 
-/* команда1    × */
 
 .team-input {
-    padding: 10px 300px;
+    padding: 10px 285px;
     margin-bottom: 15px;
     margin-top: 10px;
     font-size: 15px;
@@ -91,7 +89,6 @@ body {
 
 .team-input::placeholder {
     text-align: center;
-    /*змінити позицію курсора на центру*/
 }
 
 .plus {
@@ -102,7 +99,7 @@ body {
     padding: 5px;
     left: 0;
     width: 55%;
-    margin: 60px auto 5px; /* Відступ зверху і автоцентрування */
+    margin: 60px auto 5px;
     cursor: pointer;
     border: none;
 }
@@ -115,9 +112,8 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 55%; /* На всю ширину лівої половини */
+    width: 55%;
     font-size: 25px;
-    /*font-weight: bold;*/
     background-color: #570f0f;
     color: white;
     padding: 22px 0;

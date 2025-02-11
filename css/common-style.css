@@ -3,12 +3,6 @@
     flex-direction: column;
 }
 
-/*.team-head {  !* Заголовки: Команди, Рейтинг команд*!*/
-/*    top: 60px;*/
-/*    width: 53%;*/
-/*    text-align: center;*/
-/*    color: #393737;*/
-/*}*/
 
 img {
     position: absolute;
@@ -35,4 +29,13 @@ img {
     margin: 10px 0;
 }
 
-/*Верхній контейнер*/
+
+.background-img {
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) translateX(5%);
+    max-width: 50%;
+    height: auto;
+}
