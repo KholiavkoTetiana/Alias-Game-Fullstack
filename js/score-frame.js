@@ -20,7 +20,7 @@ function renderTeamsToPlay(teams) {
 
         const teamsToPay = document.createElement("p");
         teamsToPay.textContent = team.name + ": ";
-        // teamsToPay.classList.add("team");
+        teamsToPay.classList.add("team-name");
         teamWrapper.appendChild(teamsToPay);
 
         const teamsScore = document.createElement("p");
@@ -29,27 +29,40 @@ function renderTeamsToPlay(teams) {
         teamsScore.dataset.teamToPlay = team.score; // Додає data-team-name до кнопки
         teamWrapper.appendChild(teamsScore);
 
+        const winner = document.createElement("p");
+        winner.textContent = "Winner!";
+        winner.id = team.name; //id це ім'я команди
+        winner.classList.add("winner");
+        teamWrapper.appendChild(winner);
+
         teamsToPlayDiv.appendChild(teamWrapper);
     }
 }
 
+function displayWinner(){
+    const wordDisplay = document.querySelector("#winner");
 
+    if(model.teams[model.activeTeamIndex].score === 60){
+        wordDisplay.style.display = "block";
+    }
+}
+displayWinner();
 
-
-function renderActiveTeam(){
+function renderActiveTeam() {
     document.querySelector("#active-team").textContent = controller.getActiveTeam().name;
 }
+
 renderActiveTeam();
 
-function renderRound(){
+function renderRound() {
     document.querySelector("#current-round").textContent = model.round;
 }
+
 renderRound();
 
 
-function teamToPlay(){
-        renderTeamsToPlay(model.teams); ///??????
-
+function teamToPlay() {
+    renderTeamsToPlay(model.teams); ///??????
 }
 
 teamToPlay();
