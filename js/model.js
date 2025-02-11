@@ -6,6 +6,7 @@ export let model = {
     round: 1,
     guessed: 0,
     skip: 0,
+    winner: null,
 }
 
 export const modelExample = {
