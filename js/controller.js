@@ -4,24 +4,6 @@ import {aliasWords, model, saveModel, usedWords} from "./model.js"
 
 
 export const controller = {
-    ///// Game state /////
-    state: {
-        // Teams, players, and scores
-        // Cards which were played, cards available
-        // Game state as a state machine
-    },
-
-    ///// API functions /////
-    // Start setup
-    // Add team
-    // Start round
-
-    // Play card
-    // Skip active card
-    // Correct guess
-
-    // End round (timeout)
-    // ... (more)
 
     removeStartMessage() {
         console.log("removeStartMessage called");

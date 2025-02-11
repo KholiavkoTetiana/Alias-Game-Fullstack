@@ -47,15 +47,6 @@ function renderTeamsToPlay(teams) {
     }
 }
 
-// function displayWinner(){
-//     const wordDisplay = document.querySelector("#winner");
-//
-//     if(model.teams[model.activeTeamIndex].score === 60){
-//         wordDisplay.style.display = "block";
-//     }
-// }
-// displayWinner();
-
 function renderActiveTeam() {
     document.querySelector("#active-team").textContent = controller.getActiveTeam().name;
 }

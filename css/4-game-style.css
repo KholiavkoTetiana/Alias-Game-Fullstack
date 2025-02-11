@@ -142,11 +142,10 @@ body {
 }
 
 .win-massage {
-    position: fixed; /* Фіксуємо поверх всього */
-    /*width: 50%; !* Ширина, можна зменшити за потреби *!*/
-    top: 30%; /* Центруємо по вертикалі */
-    left: 15%; /* Центруємо по лівій половині екрану */
-    transform: translateY(-50%); /* Вирівнюємо центр */
+    position: fixed;
+    top: 30%;
+    left: 15%;
+    transform: translateY(-50%);
 
     display: flex;
     justify-content: center;
@@ -157,8 +156,8 @@ body {
     border-color: #090b09;
     color: #730707;
 
-    z-index: 9999; /* Поверх усіх */
-    pointer-events: none; /* Не блокує кліки на нижні елементи */
+    z-index: 9999;
+    pointer-events: none;
 
-    display: none; /* Початково приховано */
+    display: none;
 }

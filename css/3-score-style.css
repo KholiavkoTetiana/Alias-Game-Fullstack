@@ -26,7 +26,7 @@ body {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.back-button{
+.back-button {
     background: none;
     border: none;
     font-size: 18px;
@@ -43,7 +43,7 @@ body {
     display: inline-flex;
 }
 
-.round{
+.round {
     display: flex;
     width: 50%;
     justify-content: center;
@@ -52,19 +52,21 @@ body {
     margin: 0;
     padding: 10px;
 }
-.round h2{
+
+.round h2 {
     color: #601010;
     font-weight: revert;
     margin: 0;
 
 }
 
-.round p{
+.round p {
     margin: 0;
     font-size: 26px;
     font-weight: bold;
 }
-h3{
+
+h3 {
     font-size: 18px;
     font-weight: bold;
     color: #888888;
@@ -85,11 +87,11 @@ h3{
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
-.start-button{
+.start-button {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 55%; /* На всю ширину лівої половини */
+    width: 55%;
     font-size: 30px;
     background-color: #501212;
     color: white;
@@ -97,21 +99,24 @@ h3{
     border: none;
     cursor: pointer;
 }
+
 .start-button:hover {
     background-color: #831d1d;
-}#team-to-play-div {
-     display: flex;
-     flex-direction: column;
-     align-items: flex-start; /* Вирівнюємо блок по лівому краю */
-     margin-top: 10px;
-     width: 50vw; /* Ліва половина екрана */
- }
+}
+
+#team-to-play-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+    width: 50vw;
+}
 
 .team-item {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Рівномірний розподіл по ширині */
-    width: 100%; /* Розтягуємо на всю ширину контейнера */
+    justify-content: space-between;
+    width: 100%;
     padding: 10px 80px;
     font-size: 25px;
     color: #000000;
@@ -137,7 +142,7 @@ h3{
     width: 50%;
 }
 
-.bottom-win-massage{
+.bottom-win-massage {
     position: absolute;
     bottom: 50px;
     left: 17%;
