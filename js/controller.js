@@ -39,7 +39,7 @@ export const controller = {
             return;
         }
 
-        model.teams.push({name: newInputName, score: 0});
+        model.teams.push({name: newInputName, score: 0, isWinner: false});
         saveModel();
     },
 
@@ -115,7 +115,8 @@ export const controller = {
         winMessage.textContent = model.teams[model.activeTeamIndex].name + " WIN";
         wordDisplay.style.visibility = "hidden";
         winMessage.style.display = "block";
-        model.winner = model.teams[model.activeTeamIndex];
+
+        model.teams[model.activeTeamIndex].isWinner = true;
         console.log(`Виграла команда: ${model.teams[model.activeTeamIndex].name}`);
         setTimeout(() => {
             console.log("Перехід до рейтингу  через 4 секунди");

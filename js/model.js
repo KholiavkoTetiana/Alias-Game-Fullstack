@@ -13,11 +13,13 @@ export const modelExample = {
     teams: [
         {
             name: 'team1',
-            score: 5
+            score: 5,
+            isWinner: false,
         },
         {
             name: 'team2',
-            score: 7
+            score: 7,
+            isWinner: false,
         },
 
     ],

@@ -4,6 +4,8 @@ import {initPlayers} from "./mapa.js";
 
 readStorage();
 
+
+
 function renderTeamsToPlay(teams) {
     const teamsToPlayDiv = document.querySelector("#team-to-play-div");
     teamsToPlayDiv.innerHTML = '';
@@ -31,22 +33,28 @@ function renderTeamsToPlay(teams) {
 
         const winner = document.createElement("p");
         winner.textContent = "Winner!";
-        winner.id = team.name; //id це ім'я команди
         winner.classList.add("winner");
         teamWrapper.appendChild(winner);
+
+        if(team.isWinner === true){
+            winner.style.visibility = "visible";
+            document.querySelector("#go-to-main-menu").style.visibility = "visible";
+            document.querySelector("#start-game").style.visibility = "hidden";
+            document.querySelector(".bottom-win-massage").textContent = "Команда \"" + team.name + "\" виграла, вітаю!";
+        }
 
         teamsToPlayDiv.appendChild(teamWrapper);
     }
 }
 
-function displayWinner(){
-    const wordDisplay = document.querySelector("#winner");
-
-    if(model.teams[model.activeTeamIndex].score === 60){
-        wordDisplay.style.display = "block";
-    }
-}
-displayWinner();
+// function displayWinner(){
+//     const wordDisplay = document.querySelector("#winner");
+//
+//     if(model.teams[model.activeTeamIndex].score === 60){
+//         wordDisplay.style.display = "block";
+//     }
+// }
+// displayWinner();
 
 function renderActiveTeam() {
     document.querySelector("#active-team").textContent = controller.getActiveTeam().name;
