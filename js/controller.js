@@ -106,6 +106,23 @@ export const controller = {
         window.location.href='3-score-frame.html'
 
     },
+    win(){
+    let winMessage = document.querySelector("#win-message");
+    const wordDisplay = document.querySelector("#current-word");
+    let playerPosition = model.teams[model.activeTeamIndex].score + model.guessed - model.skip;
+
+    if(playerPosition === 60){
+        winMessage.textContent = model.teams[model.activeTeamIndex].name + " WIN";
+        wordDisplay.style.visibility = "hidden";
+        winMessage.style.display = "block";
+        model.winner = model.teams[model.activeTeamIndex];
+        console.log(`Виграла команда: ${model.teams[model.activeTeamIndex].name}`);
+        setTimeout(() => {
+            console.log("Перехід до рейтингу  через 4 секунди");
+            controller.endRound();
+        }, 4000);
+        saveModel();
+    }
+}
 }
 
-// додати Останнє слово.
