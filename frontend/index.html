@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play Alias</title>
-    <link rel="stylesheet" href="../css/1-start-style.css">
+    <link rel="stylesheet" href="css/1-start-style.css">
 </head>
 <body>
 <div class="frame">
     <div class="button-container">
-        <button id="start-new-game" onclick="window.location.href='2-team-frame.html'" class="button-play">Грати Alias
+        <button id="start-new-game"  class="button-play">Грати Alias
         </button>
-        <button onclick="window.location.href='2-team-frame.html'" class="button-continue">Продовжити попередню гру
+        <button onclick="window.location.href='/html/2-team-frame.html'" class="button-continue">Продовжити попередню гру
         </button>
-        <button onclick="window.location.href='ruls-frame.html'" class="button-ruls">Правила гри</button>
+        <button onclick="window.location.href='/html/ruls-frame.html'" class="button-ruls">Правила гри</button>
     </div>
 </div>
 
@@ -29,6 +29,7 @@
     startNewGame.addEventListener("click", () => {
         cleanLocalStorage();
         Notify.success('Нова гра розпочата!');
+        window.location.href='/html/2-team-frame.html';
     });    </script>
-<img id="game-map" class="first-background-img" src="../img/ALIAS.PNG" alt="Фото приклад">
+<img id="game-map" class="first-background-img" src="img/ALIAS.PNG" alt="Фото приклад">
 </body>

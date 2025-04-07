@@ -1,0 +1,14 @@
+{
+  "name": "alias-game-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^6.2.5"
+  },
+  "dependencies": {
+    "notiflix": "^3.2.8"
+  }
+}
