@@ -1,0 +1,6 @@
+{
+  "name": "alias-backend",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
