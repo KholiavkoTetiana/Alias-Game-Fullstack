@@ -1,6 +1,14 @@
 {
   "name": "alias-backend",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "scripts": {
+    "dev": "nodemon demo-backend.js",
+    "run": "node demo-backend.js"
   }
 }

@@ -2,8 +2,18 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.use(express.json())
+const { Pool } = require('pg');
 
+const pool = new Pool({
+    host: 'localhost',
+    user: 'alias_db',
+    password: 'alias_db',
+    database: 'postgres',
+    port: 5432,
+});
+// module.exports = pool;
+
+app.use(express.json())
 
 let model = {
     roomId: 12,
@@ -36,6 +46,13 @@ app.post('/games/new-room', (req, res) => {  //створюємо нову пу�
 
     res.json(newRoom)
 })
+
+app.get('/rooms', async (req, res) => {
+    const result = await pool.query("SELECT * FROM rooms");
+    console.log("Resulttt: ", result)
+    res.json(result.rows)
+})
+
 
 app.get('/games/:roomId', (req, res) => {       //отримаємо гру по номеру
     const roomId = parseInt(req.params.roomId)
@@ -77,15 +94,19 @@ app.put('/games/:roomId/teams/:teamName/score/:count', (req, res) => { // вст
     const roomId = parseInt(req.params.roomId)
     const teamName = req.params.teamName
     const score = parseInt(req.params.count)
-    if(model.teams.name === teamName && model.roomId === roomId){
-        model.teams.score = score
+    if(model.roomId === roomId){
+        for (let i = 0; i < model.teams.length; i++){
+            if(model.teams[i].name === teamName){
+                model.teams[i].score = score
+            }
+        }
     }else{
         return res.status(404).json({ error: 'Room not found' })
     }
     res.json(model)
 })
 
-app.put('/games/:roomId/round/:number', (req, res) => {     //встановлюємо  раунду
+app.put('/games/:roomId/round/:number', (req, res) => {     //встановлюємо раунду
     const roomId = parseInt(req.params.roomId)
     const round = parseInt(req.params.number)
     if(model.roomId === roomId){
