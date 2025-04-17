@@ -50,7 +50,9 @@ app.post('/games/:roomId/teams/:teamName', (req, res) => { // додаємо н�
     const roomId = parseInt(req.params.roomId)
     const teamName = req.params.teamName
     if(model.roomId === roomId){
-        model.teams.name = teamName
+        model.teams.push({name: teamName, score: 0})
+    }else{
+        return res.status(404).json({ error: 'Room not found' })
     }
     res.json(model)
 })
@@ -58,9 +60,17 @@ app.post('/games/:roomId/teams/:teamName', (req, res) => { // додаємо н�
 app.delete('/games/:roomId/teams/:teamName', (req, res) => {
     const teamName = req.params.teamName
     const roomId = parseInt(req.params.roomId)
-    if(model.teams.name === teamName && model.roomId === roomId){
-        delete model
+    if(model.roomId === roomId){
+        for (let i = 0; i < model.teams.length; i++){
+            if(model.teams[i].name === teamName){
+                model.teams.splice(i, 1)
+            }
+        }
+
+    }else{
+        return res.status(404).json({ error: 'Room not found' })
     }
+    res.json(model)
 })
 
 app.put('/games/:roomId/teams/:teamName/score/:count', (req, res) => { // встановлюємо рахунок після раунду
@@ -69,6 +79,8 @@ app.put('/games/:roomId/teams/:teamName/score/:count', (req, res) => { // вст
     const score = parseInt(req.params.count)
     if(model.teams.name === teamName && model.roomId === roomId){
         model.teams.score = score
+    }else{
+        return res.status(404).json({ error: 'Room not found' })
     }
     res.json(model)
 })
@@ -78,6 +90,8 @@ app.put('/games/:roomId/round/:number', (req, res) => {     //встановлю
     const round = parseInt(req.params.number)
     if(model.roomId === roomId){
         model.round = round
+    }else{
+        return res.status(404).json({ error: 'Room not found' })
     }
     res.json(model)
 })
@@ -87,6 +101,8 @@ app.put('/games/:roomId/winner/:teamIdx', (req, res) => {
     const winner = parseInt(req.params.teamIdx)
     if(model.roomId === roomId){
         model.winner = winner
+    }else{
+        return res.status(404).json({ error: 'Room not found' })
     }
     res.json(model)
 })
@@ -96,6 +112,8 @@ app.put('/games/:roomId/active-team-index/:activeTeamIndex', (req, res) => {
     const activeTeamIndex = parseInt(req.params.activeTeamIndex)
     if(model.roomId === roomId){
         model.activeTeamIndex = activeTeamIndex
+    }else{
+        return res.status(404).json({ error: 'Room not found' })
     }
     res.json(model)
 })
