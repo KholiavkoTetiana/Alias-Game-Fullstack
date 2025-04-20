@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-const { Pool } = require('pg');
+const {Pool} = require('pg');
 
 const pool = new Pool({
     host: 'localhost',
@@ -12,6 +12,31 @@ const pool = new Pool({
     port: 5432,
 });
 // module.exports = pool;
+
+async function getAllRoomInfo(roomId) {
+    const roomResult = await pool.query(`SELECT * FROM rooms WHERE id = $1`, [roomId]);
+    if (roomResult.rows.length === 0) {
+        return res.status(404).json({ error: 'Room not found' });
+    }
+
+    const teamsResult = await pool.query(`SELECT * FROM teams WHERE room_id = $1`, [roomId]);
+    const teams = teamsResult.rows.map(team => ({
+        id: team.id,
+        roomId: team.room_id,
+        name: team.name,
+        score: team.score
+    }));
+
+    return {
+        roomId: roomResult.rows[0].id,
+        teams,
+        activeTeamId: roomResult.rows[0].active_team_id,
+        round: roomResult.rows[0].round,
+        guessed: 0,
+        skip: 0,
+        winnerTeamId: roomResult.rows[0].winner_team_id,
+    };
+}
 
 app.use(express.json())
 
@@ -31,20 +56,20 @@ let model = {
     winner: null,
 }
 
-app.post('/games/new-room', (req, res) => {  //створюємо нову пусту кімната для гри з її номером
-    let newRoomId = model.roomId++;
-    let newRoom = {
-        newRoomId,
+app.post('/games/new-room', async (req, res) => {  //створюємо нову пусту кімната для гри з її номером
+    const result = await pool.query(`INSERT INTO rooms (round)
+                                     VALUES (1) RETURNING id`);
+
+    console.log("Resulttt: ", result)
+    res.json({
+        roomId: result.rows[0].id,
         teams: [],
-        activeTeamIndex: null,
+        activeTeamId: null,
         round: 1,
         guessed: 0,
         skip: 0,
-        winner: null,
-    };
-    // model.push(newRoom)
-
-    res.json(newRoom)
+        winnerTeamId: null,
+    })
 })
 
 app.get('/rooms', async (req, res) => {
@@ -54,89 +79,109 @@ app.get('/rooms', async (req, res) => {
 })
 
 
-app.get('/games/:roomId', (req, res) => {       //отримаємо гру по номеру
+app.get('/games/:roomId', async (req, res) => {       //отримаємо гру по номеру
+    console.log('Викликали: /games/:roomId')
     const roomId = parseInt(req.params.roomId)
-    if(model.roomId === roomId){
-        res.json(model)
-    }else{
-        return res.status(404).json({ error: 'Room not found' })
+    const roomInfo = await getAllRoomInfo(roomId);
+
+    if(!roomInfo){
+        return res.status(404).json({error: 'Room not found'})
     }
+    res.json(roomInfo);
 })
 
-app.post('/games/:roomId/teams/:teamName', (req, res) => { // додаємо нову створену команду в кімнату
+app.post('/games/:roomId/teams/:teamName', async (req, res) => { // додаємо нову створену команду в кімнату
+    console.log('Викликали: /games/:roomId/teams/:teamName')
     const roomId = parseInt(req.params.roomId)
     const teamName = req.params.teamName
-    if(model.roomId === roomId){
-        model.teams.push({name: teamName, score: 0})
-    }else{
-        return res.status(404).json({ error: 'Room not found' })
+
+    await pool.query(
+        `INSERT INTO teams (room_id, name, score) VALUES ($1, $2, 0)`,
+        [roomId, teamName]
+    );
+
+    const roomInfo = await getAllRoomInfo(roomId);
+
+    if (!roomInfo) {
+        return res.status(404).json({ error: 'Room not found' });
     }
-    res.json(model)
+    res.json(roomInfo);
+
 })
 
-app.delete('/games/:roomId/teams/:teamName', (req, res) => {
+app.delete('/games/:roomId/teams/:teamName', async (req, res) => { // встановити видалити створену команду
+    console.log('Викликали: /games/:roomId/teams/:teamName')
     const teamName = req.params.teamName
     const roomId = parseInt(req.params.roomId)
-    if(model.roomId === roomId){
-        for (let i = 0; i < model.teams.length; i++){
-            if(model.teams[i].name === teamName){
-                model.teams.splice(i, 1)
-            }
-        }
 
-    }else{
-        return res.status(404).json({ error: 'Room not found' })
+    await pool.query(
+        `DELETE FROM teams WHERE room_id = $1 AND name LIKE $2`,
+        [roomId, teamName]
+    );
+
+    const roomInfo = await getAllRoomInfo(roomId)
+    if (!roomInfo) {
+        return res.status(404).json({ error: 'Room not found' });
     }
-    res.json(model)
+    res.json(roomInfo);
 })
 
-app.put('/games/:roomId/teams/:teamName/score/:count', (req, res) => { // встановлюємо рахунок після раунду
+app.put('/games/:roomId/teams/:teamName/score/:count', async (req, res) => { // встановлюємо рахунок після раунду
+    console.log('Викликали: /games/:roomId/teams/:teamName/score/:count')
     const roomId = parseInt(req.params.roomId)
     const teamName = req.params.teamName
     const score = parseInt(req.params.count)
-    if(model.roomId === roomId){
-        for (let i = 0; i < model.teams.length; i++){
-            if(model.teams[i].name === teamName){
-                model.teams[i].score = score
-            }
-        }
-    }else{
-        return res.status(404).json({ error: 'Room not found' })
+
+    await pool.query('UPDATE teams SET score = $1 WHERE room_id = $2 AND name LIKE $3', [score, roomId, teamName])
+
+    const roomInfo = await getAllRoomInfo(roomId)
+    if(!roomInfo){
+        return res.status(404).json({ error: 'Room not found' });
     }
-    res.json(model)
+    res.json(roomInfo);
 })
 
-app.put('/games/:roomId/round/:number', (req, res) => {     //встановлюємо раунду
+app.put('/games/:roomId/round/:number', async (req, res) => {     //встановлюємо раунду
+    console.log('Викликали: /games/:roomId/round/:number')
     const roomId = parseInt(req.params.roomId)
     const round = parseInt(req.params.number)
-    if(model.roomId === roomId){
-        model.round = round
-    }else{
-        return res.status(404).json({ error: 'Room not found' })
+
+    await pool.query('UPDATE rooms SET round = $1 WHERE id = $2', [round, roomId])
+
+    const roomInfo = await getAllRoomInfo(roomId)
+    if(!roomInfo){
+        return res.status(404).json({ error: 'Room not found' });
     }
-    res.json(model)
+    res.json(roomInfo);
 })
 
-app.put('/games/:roomId/winner/:teamIdx', (req, res) => {
+app.put('/games/:roomId/winner/:teamIdx', async (req, res) => {
+    console.log('Викликали: /games/:roomId/winner/:teamIdx')
     const roomId = parseInt(req.params.roomId)
     const winner = parseInt(req.params.teamIdx)
-    if(model.roomId === roomId){
-        model.winner = winner
-    }else{
-        return res.status(404).json({ error: 'Room not found' })
+    await pool.query(`UPDATE rooms SET winner_team_id = $1 WHERE id = $2`,
+        [winner, roomId])
+
+    const roomInfo = await getAllRoomInfo(roomId)
+    if(!roomInfo){
+        return res.status(404).json({ error: 'Room not found' });
     }
-    res.json(model)
+    res.json(roomInfo);
 })
 
-app.put('/games/:roomId/active-team-index/:activeTeamIndex', (req, res) => {
+app.put('/games/:roomId/active-team-index/:activeTeamIndex', async (req, res) => { //встановити активну команду
+    console.log('Викликали: /games/:roomId/active-team-index/:activeTeamIndex')
     const roomId = parseInt(req.params.roomId)
     const activeTeamIndex = parseInt(req.params.activeTeamIndex)
-    if(model.roomId === roomId){
-        model.activeTeamIndex = activeTeamIndex
-    }else{
-        return res.status(404).json({ error: 'Room not found' })
+
+    await pool.query(`UPDATE rooms SET active_team_id = $1 WHERE id = $2`,
+        [activeTeamIndex, roomId])
+
+    const roomInfo = await getAllRoomInfo(roomId)
+    if(!roomInfo){
+        return res.status(404).json({ error: 'Room not found' });
     }
-    res.json(model)
+    res.json(roomInfo);
 })
 
 
