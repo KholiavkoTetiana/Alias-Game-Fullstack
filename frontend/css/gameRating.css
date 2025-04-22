@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url("../img/ALIAS.PNG") no-repeat center top fixed;
+    background-size: cover;
+    background-position-y: 35%; /* змінюй це значення для вертикального зсуву фото */
+    color: white;
+    font-family: 'Arial', sans-serif;
+
+}
+
+.container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.rating-header {
+    background-color: rgb(30, 29, 29);
+    border: 2px solid #591313;
+    border-bottom: none;
+    padding: 20px 0;
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-shadow: 0 0 15px rgba(60, 11, 11, 0.4);
+}
+
+.rating-header h1 {
+    font-size: 36px;
+    margin: 0;
+    color: #f8f6f6;
+    text-shadow: 2px 2px 4px #592d2d;
+}
+
+.rating-table {
+    width: 100%;
+    font-size: 18px;
+    border-collapse: collapse;
+    background-color: rgba(27, 26, 26, 0.96);
+    border: 2px solid #831d1d;
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 0 15px rgb(73, 15, 15);
+    overflow: hidden;
+}
+
+.rating-table thead {
+    background-color: #831d1d;
+    color: #f4e9e9;
+}
+
+.rating-table th,
+.rating-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #393737;
+}
+
+.rating-table tbody tr:hover {
+    background-color: #393737;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.rating-table td {
+    color: #dbd8d8;
+    vertical-align: top;
+    white-space: pre-line;
+}
+
+.rating-table td:nth-child(3) {
+    font-weight: bold;
+    color: #a81616;
+}
