@@ -18,16 +18,15 @@
 </div>
 
 <script type="module">
-    function cleanLocalStorage() {
-        localStorage.setItem("model", {});
-        console.log("почистили localStorage");
-    }
 
     import {Notify} from 'notiflix/build/notiflix-notify-aio';
 
     let startNewGame = document.querySelector("#start-new-game");
-    startNewGame.addEventListener("click", () => {
-        cleanLocalStorage();
+    startNewGame.addEventListener("click", async () => {
+        let res = await fetch('http://localhost:3000/games/new-room', {method: 'POST'})
+        let room = await res.json()
+        console.log('room;', room)
+        localStorage.setItem('room', JSON.stringify(room))
         Notify.success('Нова гра розпочата!');
         window.location.href='/html/2-team-frame.html';
     });    </script>

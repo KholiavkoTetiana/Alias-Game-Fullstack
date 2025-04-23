@@ -1,7 +1,14 @@
 // Alias controller API
 
-import {aliasWords, model, saveModel, usedWords} from "./model.js"
+import {aliasWords, model, readStorage, saveModel, usedWords} from "./model.js"
 
+
+async function saveResponse(res) {
+    let room = await res.json()
+    console.log('room;', room)
+    localStorage.setItem('room', JSON.stringify(room))
+    readStorage();
+}
 
 export const controller = {
 
@@ -9,8 +16,11 @@ export const controller = {
         console.log("removeStartMessage called");
     },
 
-
-    addTeam(newInputName) {
+// let res = await fetch('http://localhost:3000/games/new-room', {method: 'POST'})
+//         let room = await res.json()
+//         console.log('room;', room)
+//         localStorage.setItem('room', JSON.stringify(room))
+    async addTeam(newInputName) {
 
         if (model.teams.length >= 5) {
             alert("Максимальна кількість команд — 5.");
@@ -21,8 +31,19 @@ export const controller = {
             return;
         }
 
-        model.teams.push({name: newInputName, score: 0, isWinner: false});
-        saveModel();
+        // model.teams.push({name: newInputName, score: 0, isWinner: false});
+        // saveModel();
+        let res = await fetch(`http://localhost:3000/games/${model.roomId}/teams/${newInputName}`, {method: 'POST'})
+        await saveResponse(res);
+
+        // await fetch(`http://localhost:3000/games/${model.roomId}/teams/${newInputName}`, {method: 'POST'})
+        //     .then((res) => {
+        //             saveResponse(res)
+        //         }
+        //     )
+        //
+        // await fetch(`http://localhost:3000/games/${model.roomId}/teams/${newInputName}`, {method: 'POST'})
+        //     .then(saveResponse)
     },
 
     deleteTeam(teamName) {
@@ -82,30 +103,30 @@ export const controller = {
         this.calculateScore();
         model.skip = 0;
         model.guessed = 0;
-        model.round ++;
+        model.round++;
         this.chooseNextTeam();
         saveModel();
-        window.location.href='3-score-frame.html'
+        window.location.href = '3-score-frame.html'
 
     },
-    win(){
-    let winMessage = document.querySelector("#win-message");
-    const wordDisplay = document.querySelector("#current-word");
-    let playerPosition = model.teams[model.activeTeamIndex].score + model.guessed - model.skip;
+    win() {
+        let winMessage = document.querySelector("#win-message");
+        const wordDisplay = document.querySelector("#current-word");
+        let playerPosition = model.teams[model.activeTeamIndex].score + model.guessed - model.skip;
 
-    if(playerPosition === 60){
-        winMessage.textContent = model.teams[model.activeTeamIndex].name + " WIN";
-        wordDisplay.style.visibility = "hidden";
-        winMessage.style.display = "block";
+        if (playerPosition === 60) {
+            winMessage.textContent = model.teams[model.activeTeamIndex].name + " WIN";
+            wordDisplay.style.visibility = "hidden";
+            winMessage.style.display = "block";
 
-        model.teams[model.activeTeamIndex].isWinner = true;
-        console.log(`Виграла команда: ${model.teams[model.activeTeamIndex].name}`);
-        setTimeout(() => {
-            console.log("Перехід до рейтингу  через 4 секунди");
-            controller.endRound();
-        }, 4000);
-        saveModel();
+            model.teams[model.activeTeamIndex].isWinner = true;
+            console.log(`Виграла команда: ${model.teams[model.activeTeamIndex].name}`);
+            setTimeout(() => {
+                console.log("Перехід до рейтингу  через 4 секунди");
+                controller.endRound();
+            }, 4000);
+            saveModel();
+        }
     }
-}
 }
 

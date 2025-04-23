@@ -1,4 +1,5 @@
 export let model = {
+    roomId: 0,
     teams: [
 
     ],
@@ -61,7 +62,7 @@ export const usedWords = [
 
 export function readStorage(){
     try {
-        const savedData = JSON.parse(localStorage.getItem("model"));
+        const savedData = JSON.parse(localStorage.getItem("room"));
         // const savedData = modelExample;
 
         if (savedData) {
@@ -76,7 +77,7 @@ export function readStorage(){
 }
 
 export function saveModel(){
-    localStorage.setItem("model", JSON.stringify(model));
+    localStorage.setItem("room", JSON.stringify(model));
     console.log(JSON.stringify(model));
 }
 

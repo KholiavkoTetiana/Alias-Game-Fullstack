@@ -44,10 +44,12 @@ function addTeam() {
         return;
     }
 
-    controller.addTeam(newInputName);
-    renderTeams(model.teams);
-    document.querySelector("#new-team-inp").value = ""; // Очищаємо поле вводу
-    removeStartMessage();
+    controller.addTeam(newInputName).then(() => {
+        renderTeams(model.teams);
+        document.querySelector("#new-team-inp").value = ""; // Очищаємо поле вводу
+        removeStartMessage();
+    });
+
 }
 
 function deleteTeam(e) {
