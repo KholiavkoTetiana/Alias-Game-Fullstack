@@ -72,14 +72,18 @@ export const controller = {
             model.activeTeamIndex = 0;
             console.log(`початок гри, команда 1 [${model.activeTeamIndex}]`);
         }
-        if (activeTeam !== null && activeTeam !== model.teams.length - 1) {
+        else if(activeTeam !== model.teams.length - 1) {
             model.activeTeamIndex++;
             console.log(`команда [${model.activeTeamIndex}]`);
         }
-        if (activeTeam !== null && activeTeam === model.teams.length - 1) {
+        else if(activeTeam !== null && activeTeam === model.teams.length - 1) {
             model.activeTeamIndex = 0;
             console.log(`з останньої на першу [${model.activeTeamIndex}]`);
         }
+        model.activeTeamId = model.teams[model.activeTeamIndex].id;
+        fetch(`http://localhost:3000/games/${model.roomId}/active-team-id/${model.activeTeamId}`, {method: 'PUT'})
+            .then(saveResponse)
+
         saveModel();
     },
     getActiveTeam() {

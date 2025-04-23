@@ -13,11 +13,13 @@ export let model = {
 export const modelExample = {
     teams: [
         {
+            id: 29,
             name: 'team1',
             score: 5,
             isWinner: false,
         },
         {
+            id: 43,
             name: 'team2',
             score: 7,
             isWinner: false,

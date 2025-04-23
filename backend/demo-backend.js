@@ -42,22 +42,6 @@ async function getAllRoomInfo(roomId) {
 
 app.use(express.json())
 
-let model = {
-    roomId: 12,
-    teams: [
-        {
-            name: 'team1',
-            score: 5,
-        },
-
-    ],
-    activeTeamIndex: null,
-    round: 1,
-    guessed: 0,
-    skip: 0,
-    winner: null,
-}
-
 app.post('/games/new-room', async (req, res) => {  //створюємо нову пусту кімната для гри з її номером
     const result = await pool.query(`INSERT INTO rooms (round)
                                      VALUES (1) RETURNING id`);
@@ -171,7 +155,7 @@ app.put('/games/:roomId/winner/:teamIdx', async (req, res) => {
     res.json(roomInfo);
 })
 
-app.put('/games/:roomId/active-team-index/:activeTeamIndex', async (req, res) => { //встановити активну команду
+app.put('/games/:roomId/active-team-id/:activeTeamIndex', async (req, res) => { //встановити активну команду
     console.log('Викликали: /games/:roomId/active-team-index/:activeTeamIndex')
     const roomId = parseInt(req.params.roomId)
     const activeTeamIndex = parseInt(req.params.activeTeamIndex)
