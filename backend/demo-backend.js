@@ -141,12 +141,12 @@ app.put('/games/:roomId/round/:number', async (req, res) => {     //встано
     res.json(roomInfo);
 })
 
-app.put('/games/:roomId/winner/:teamIdx', async (req, res) => {
-    console.log('Викликали: /games/:roomId/winner/:teamIdx')
+app.put('/games/:roomId/winner/:teamId', async (req, res) => {
+    console.log('Викликали: /games/:roomId/winner/:teamId')
     const roomId = parseInt(req.params.roomId)
-    const winner = parseInt(req.params.teamIdx)
+    const winnerId = parseInt(req.params.teamId)
     await pool.query(`UPDATE rooms SET winner_team_id = $1 WHERE id = $2`,
-        [winner, roomId])
+        [winnerId, roomId])
 
     const roomInfo = await getAllRoomInfo(roomId)
     if(!roomInfo){

@@ -2,14 +2,23 @@
 
 import {aliasWords, model, readStorage, saveModel, usedWords} from "./model.js"
 
-
+function getIndexById(teams, teamId) {
+    for (let i = 0; i < teams.length; i++) {
+        if (teams[i].id === teamId) {
+            console.log('індекс активної команди = ', i)
+            return i;
+        }
+    }
+}
 async function saveResponse(res) {
     let room = await res.json()
+    room.activeTeamIndex = getIndexById(room.teams, room.activeTeamId)
     console.log('room;', room)
     localStorage.setItem('room', JSON.stringify(room))
     readStorage();
 }
 
+const scoreToWin = 15;
 export const controller = {
 
     removeStartMessage() {
@@ -71,12 +80,10 @@ export const controller = {
         if (activeTeam === null || activeTeam === undefined) {
             model.activeTeamIndex = 0;
             console.log(`початок гри, команда 1 [${model.activeTeamIndex}]`);
-        }
-        else if(activeTeam !== model.teams.length - 1) {
+        } else if (activeTeam !== model.teams.length - 1) {
             model.activeTeamIndex++;
             console.log(`команда [${model.activeTeamIndex}]`);
-        }
-        else if(activeTeam !== null && activeTeam === model.teams.length - 1) {
+        } else if (activeTeam !== null && activeTeam === model.teams.length - 1) {
             model.activeTeamIndex = 0;
             console.log(`з останньої на першу [${model.activeTeamIndex}]`);
         }
@@ -88,8 +95,7 @@ export const controller = {
     },
     getActiveTeam() {
         return model.teams[model.activeTeamIndex];
-    }
-    ,
+    },
     addGuess() {
         model.guessed++;
         saveModel();
@@ -100,15 +106,25 @@ export const controller = {
         saveModel();
     },
     calculateScore() {
-        this.getActiveTeam().score += model.guessed - model.skip;
+        const activeTeam = this.getActiveTeam();
+        console.log('activeTeam',activeTeam);
+        const newScore = model.guessed - model.skip;
+        activeTeam.score += newScore;
+        console.log('activeTeam',activeTeam);
+
+        let name = activeTeam.name;
+        fetch(`http://localhost:3000/games/${model.roomId}/teams/${name}/score/${activeTeam.score}`, {method: 'PUT'})
+            .then(saveResponse)
     },
     endRound() {
-
         this.calculateScore();
         model.skip = 0;
         model.guessed = 0;
         model.round++;
         this.chooseNextTeam();
+
+        fetch(`http://localhost:3000/games/${model.roomId}/round/${model.round}`, {method: 'PUT'})
+            .then(saveResponse)
         saveModel();
         window.location.href = '3-score-frame.html'
 
@@ -118,19 +134,25 @@ export const controller = {
         const wordDisplay = document.querySelector("#current-word");
         let playerPosition = model.teams[model.activeTeamIndex].score + model.guessed - model.skip;
 
-        if (playerPosition === 60) {
+        if (playerPosition === scoreToWin) {
             winMessage.textContent = model.teams[model.activeTeamIndex].name + " WIN";
             wordDisplay.style.visibility = "hidden";
             winMessage.style.display = "block";
 
             model.teams[model.activeTeamIndex].isWinner = true;
             console.log(`Виграла команда: ${model.teams[model.activeTeamIndex].name}`);
+
+            let winnerId = model.teams[model.activeTeamIndex].id;
+            fetch(`http://localhost:3000/games/${model.roomId}/winner/${winnerId}`, {method: 'PUT'})
+                .then(saveResponse)
+
             setTimeout(() => {
-                console.log("Перехід до рейтингу  через 4 секунди");
+                console.log("Перехід до рейтингу  через 2 секунди");
                 controller.endRound();
             }, 4000);
             saveModel();
         }
     }
 }
+
 
