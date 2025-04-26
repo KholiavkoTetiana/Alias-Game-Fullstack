@@ -1,6 +1,6 @@
 import {controller} from "./controller.js";
 
-let timeRemaining = 10;
+let timeRemaining = 5;
 let interval = null;
 let isPaused = false;
 
@@ -18,9 +18,9 @@ function updateTimerDisplay() {
         `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-function endRoundHandler() {
+async function endRoundHandler() {
     showOriginalButtons();
-    controller.endRound();
+    await controller.endRound();
 
     guessButton.removeEventListener("click", endRoundHandler);
     skipButton.removeEventListener("click", endRoundHandler);

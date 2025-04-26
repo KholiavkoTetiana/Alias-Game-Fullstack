@@ -26,7 +26,8 @@ async function getAllRoomInfo(roomId) {
         id: team.id,
         roomId: team.room_id,
         name: team.name,
-        score: team.score
+        score: team.score,
+        isWinner: team.is_winner,
     }));
 
     return {
@@ -141,7 +142,7 @@ app.put('/games/:roomId/round/:number', async (req, res) => {     //встано
     res.json(roomInfo);
 })
 
-app.put('/games/:roomId/winner/:teamId', async (req, res) => {
+app.put('/games/:roomId/winner/:teamId', async (req, res) => { // встановити переможця
     console.log('Викликали: /games/:roomId/winner/:teamId')
     const roomId = parseInt(req.params.roomId)
     const winnerId = parseInt(req.params.teamId)
@@ -153,6 +154,22 @@ app.put('/games/:roomId/winner/:teamId', async (req, res) => {
         return res.status(404).json({ error: 'Room not found' });
     }
     res.json(roomInfo);
+})
+
+app.put('/games/:roomId/teams/:teamName/is_winner/:isWinner', async (req, res) => {
+    console.log('Викликали: /games/:roomId/teams/:teamName/score/:count')
+    const roomId = parseInt(req.params.roomId)
+    const teamName = req.params.teamName
+    const isWinner = req.params.isWinner
+
+    await pool.query('UPDATE teams SET is_winner = $1 WHERE room_id = $2 AND name LIKE $3', [isWinner, roomId, teamName])
+
+    const roomInfo = await getAllRoomInfo(roomId)
+    if(!roomInfo){
+        return res.status(404).json({ error: 'Room not found' });
+    }
+    res.json(roomInfo);
+
 })
 
 app.put('/games/:roomId/active-team-id/:activeTeamIndex', async (req, res) => { //встановити активну команду

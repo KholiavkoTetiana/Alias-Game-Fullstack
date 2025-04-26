@@ -14,6 +14,7 @@ async function saveResponse(res) {
     let room = await res.json()
     room.activeTeamIndex = getIndexById(room.teams, room.activeTeamId)
     console.log('room;', room)
+    // room.teams.sort((a, b) => a.id - b.id);
     localStorage.setItem('room', JSON.stringify(room))
     readStorage();
 }
@@ -105,7 +106,7 @@ export const controller = {
         model.skip++;
         saveModel();
     },
-    calculateScore() {
+    async calculateScore() {
         const activeTeam = this.getActiveTeam();
         console.log('activeTeam',activeTeam);
         const newScore = model.guessed - model.skip;
@@ -113,19 +114,23 @@ export const controller = {
         console.log('activeTeam',activeTeam);
 
         let name = activeTeam.name;
-        fetch(`http://localhost:3000/games/${model.roomId}/teams/${name}/score/${activeTeam.score}`, {method: 'PUT'})
+        await fetch(`http://localhost:3000/games/${model.roomId}/teams/${name}/score/${activeTeam.score}`, {method: 'PUT'})
             .then(saveResponse)
     },
-    endRound() {
-        this.calculateScore();
+    async endRound() {
+        console.log(model);
+
+        await this.calculateScore();
+        console.log(model);
+
         model.skip = 0;
         model.guessed = 0;
         model.round++;
         this.chooseNextTeam();
+        console.log(model);
 
         fetch(`http://localhost:3000/games/${model.roomId}/round/${model.round}`, {method: 'PUT'})
             .then(saveResponse)
-        saveModel();
         window.location.href = '3-score-frame.html'
 
     },
@@ -133,23 +138,32 @@ export const controller = {
         let winMessage = document.querySelector("#win-message");
         const wordDisplay = document.querySelector("#current-word");
         let playerPosition = model.teams[model.activeTeamIndex].score + model.guessed - model.skip;
+        const activeTeam = this.getActiveTeam();
 
-        if (playerPosition === scoreToWin) {
+        if (playerPosition >= scoreToWin) {
             winMessage.textContent = model.teams[model.activeTeamIndex].name + " WIN";
             wordDisplay.style.visibility = "hidden";
             winMessage.style.display = "block";
 
             model.teams[model.activeTeamIndex].isWinner = true;
-            console.log(`Виграла команда: ${model.teams[model.activeTeamIndex].name}`);
+            console.log(`Виграла команда: ${model.teams[model.activeTeamIndex].name} : ${model.teams[model.activeTeamIndex]}`);
 
             let winnerId = model.teams[model.activeTeamIndex].id;
+            console.log(model);
+
             fetch(`http://localhost:3000/games/${model.roomId}/winner/${winnerId}`, {method: 'PUT'})
                 .then(saveResponse)
+            console.log(model);
 
-            setTimeout(() => {
+            fetch(`http://localhost:3000/games/${model.roomId}/teams/${activeTeam.name}/is_winner/${activeTeam.isWinner}`, {method: 'PUT'})
+                .then(saveResponse)
+            console.log(model);
+
+            setTimeout(async () => {
                 console.log("Перехід до рейтингу  через 2 секунди");
-                controller.endRound();
-            }, 4000);
+                // window.location.href = '3-score-frame.html'
+                await controller.endRound();
+            }, 3000);
             saveModel();
         }
     }
