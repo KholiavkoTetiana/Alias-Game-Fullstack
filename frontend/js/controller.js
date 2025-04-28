@@ -14,7 +14,7 @@ async function saveResponse(res) {
     let room = await res.json()
     room.activeTeamIndex = getIndexById(room.teams, room.activeTeamId)
     console.log('room;', room)
-    // room.teams.sort((a, b) => a.id - b.id);
+    room.teams.sort((a, b) => a.id - b.id);
     localStorage.setItem('room', JSON.stringify(room))
     readStorage();
 }
@@ -77,20 +77,24 @@ export const controller = {
         return randomWord;
     },
     chooseNextTeam() {
-        const activeTeam = model.activeTeamIndex;
-        if (activeTeam === null || activeTeam === undefined) {
+        const currentIndex = getIndexById(model.teams, model.activeTeamId);
+
+        if (currentIndex === undefined || currentIndex === null) {
             model.activeTeamIndex = 0;
+            model.activeTeamId = model.teams[0].id;
             console.log(`початок гри, команда 1 [${model.activeTeamIndex}]`);
-        } else if (activeTeam !== model.teams.length - 1) {
-            model.activeTeamIndex++;
+        } else if (currentIndex !== model.teams.length - 1) {
+            model.activeTeamIndex = currentIndex + 1;
+            model.activeTeamId = model.teams[currentIndex + 1].id;
             console.log(`команда [${model.activeTeamIndex}]`);
-        } else if (activeTeam !== null && activeTeam === model.teams.length - 1) {
+        } else {
             model.activeTeamIndex = 0;
+            model.activeTeamId = model.teams[0].id;
             console.log(`з останньої на першу [${model.activeTeamIndex}]`);
         }
-        model.activeTeamId = model.teams[model.activeTeamIndex].id;
+
         fetch(`http://localhost:3000/games/${model.roomId}/active-team-id/${model.activeTeamId}`, {method: 'PUT'})
-            .then(saveResponse)
+            .then(saveResponse);
 
         saveModel();
     },
@@ -152,11 +156,11 @@ export const controller = {
             console.log(model);
 
             fetch(`http://localhost:3000/games/${model.roomId}/winner/${winnerId}`, {method: 'PUT'})
-                .then(saveResponse)
+                .then()
             console.log(model);
 
             fetch(`http://localhost:3000/games/${model.roomId}/teams/${activeTeam.name}/is_winner/${activeTeam.isWinner}`, {method: 'PUT'})
-                .then(saveResponse)
+                .then()
             console.log(model);
 
             setTimeout(async () => {
