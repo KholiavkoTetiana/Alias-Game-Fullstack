@@ -1,5 +1,5 @@
 export let timeRemaining = 60;
-export let interval = null;
+let interval = null;
 export let isPaused = false;
 
 export function startTimer(tickCallback, endCallback) {
@@ -9,11 +9,17 @@ export function startTimer(tickCallback, endCallback) {
                 timeRemaining--;
                 tickCallback();
             } else {
-                clearInterval(interval);
-                interval = null;
+                stopTimer();
                 endCallback();
             }
         }, 1000);
+    }
+}
+
+export function stopTimer(){
+    if (interval !== null) {
+        clearInterval(interval);
+        interval = null;
     }
 }
 
@@ -30,6 +36,10 @@ export function continueTimer(tickCallback, endCallback) {
         isPaused = false;
         startTimer(tickCallback, endCallback);
     }
+}
+
+export function getTimeRemaining() {
+    return timeRemaining;
 }
 
 export function resetTimer(seconds = 60) {

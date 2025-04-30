@@ -1,6 +1,7 @@
 // Alias controller API
 
 import {aliasWords, model, readStorage, saveModel, usedWords} from "./model.js"
+import {stopTimer, getTimeRemaining} from "./timer-logic.js"; // для обрахунку тривалості останнього раунду
 
 function getIndexById(teams, teamId) {
     for (let i = 0; i < teams.length; i++) {
@@ -20,6 +21,7 @@ async function saveResponse(res) {
 }
 
 const scoreToWin = 15;
+let finalRoundTime = 0;
 export const controller = {
 
     removeStartMessage() {
@@ -121,6 +123,12 @@ export const controller = {
         await fetch(`http://localhost:3000/games/${model.roomId}/teams/${name}/score/${activeTeam.score}`, {method: 'PUT'})
             .then(saveResponse)
     },
+    calculateWinnerTeamTime(){
+        const roundsPerTeam = Math.floor(model.round / model.teams.length);
+        return (roundsPerTeam * 60) + finalRoundTime;
+
+
+    },
     async endRound() {
         console.log(model);
 
@@ -149,6 +157,11 @@ export const controller = {
             wordDisplay.style.visibility = "hidden";
             winMessage.style.display = "block";
 
+            stopTimer();
+
+            finalRoundTime = 60 - getTimeRemaining(); // скільки секунд пройшло
+            console.log(`Фінальний виграшний раунд тривав: ${finalRoundTime} секунд`);
+
             model.teams[model.activeTeamIndex].isWinner = true;
             console.log(`Виграла команда: ${model.teams[model.activeTeamIndex].name} : ${model.teams[model.activeTeamIndex]}`);
 
@@ -172,5 +185,9 @@ export const controller = {
         }
     }
 }
+
+
+
+//я маю кількість всіх раундів гри, кількість команд (від 2 до 5) та переможця. як мені дізнатись скільки раундів пройшов переможець
 
 

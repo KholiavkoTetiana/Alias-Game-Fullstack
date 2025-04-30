@@ -1,6 +1,7 @@
 import { model} from "./model.js";
 import {controller} from "./controller.js";
-import {startTimer} from "./timer.js";
+import {startTimer} from "./timer-logic.js";
+import {updateTimerDisplay, handleEnd} from "./timer.js"
 import {initPlayers, map, placePlayer, players} from "./mapa.js";
 
 
@@ -26,9 +27,10 @@ function setupStartButton(){
     startBtn.addEventListener("click", StartGame);
 
 }
-
-
-
+//
+// function ofGuessAndSkip(
+//
+// )
 
 function movePlayer(){
     const activeTeam = model.teams[model.activeTeamIndex]; // Отримуємо активну команду
@@ -46,6 +48,9 @@ function movePlayer(){
 function StartGame() {
     const startBtn = document.querySelector("#current-word");
     startBtn.removeEventListener("click", StartGame);
+    startTimer(updateTimerDisplay, handleEnd);
+    updateTimerDisplay();
+
 
     const guessButton = document.querySelector("#guess-btn");
     const skipButton = document.querySelector("#skip-btn");
@@ -66,7 +71,6 @@ function StartGame() {
         movePlayer();
     });
     renderWords();
-    startTimer();
     //намалювати стоп
 
 }

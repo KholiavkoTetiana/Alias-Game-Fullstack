@@ -1,5 +1,5 @@
 import { controller } from "./controller.js";
-import {timeRemaining, isPaused, startTimer, pauseTimer, continueTimer} from "./timer-logic.js";
+import {timeRemaining, isPaused, pauseTimer, continueTimer} from "./timer-logic.js";
 
 const timerElement = document.querySelector("#timer");
 const stopContinue = document.querySelector("#stop-continue");
