@@ -29,6 +29,7 @@ async function getAllRoomInfo(roomId) {
         score: team.score,
         isWinner: team.is_winner,
     }));
+    const teamsDurationSeconds = await pool.query(`SELECT duration_seconds FROM teams WHERE room_id = $1 AND is_winner = true`, [roomId]);
 
     return {
         roomId: roomResult.rows[0].id,
@@ -38,6 +39,7 @@ async function getAllRoomInfo(roomId) {
         guessed: 0,
         skip: 0,
         winnerTeamId: roomResult.rows[0].winner_team_id,
+        durationSeconds: teamsDurationSeconds.rows[0]?.duration_seconds || 0,
     };
 }
 
@@ -56,6 +58,7 @@ app.post('/games/new-room', async (req, res) => {  //створюємо нову
         guessed: 0,
         skip: 0,
         winnerTeamId: null,
+        duration_seconds: 0,
     })
 })
 
@@ -64,7 +67,6 @@ app.get('/rooms', async (req, res) => {
     console.log("Resulttt: ", result)
     res.json(result.rows)
 })
-
 
 app.get('/games/:roomId', async (req, res) => {       //отримаємо гру по номеру
     console.log('Викликали: /games/:roomId')
@@ -179,6 +181,21 @@ app.put('/games/:roomId/active-team-id/:activeTeamIndex', async (req, res) => { 
 
     await pool.query(`UPDATE rooms SET active_team_id = $1 WHERE id = $2`,
         [activeTeamIndex, roomId])
+
+    const roomInfo = await getAllRoomInfo(roomId)
+    if(!roomInfo){
+        return res.status(404).json({ error: 'Room not found' });
+    }
+    res.json(roomInfo);
+})
+
+app.put('/games/:roomId/teams/:teamName/duration_seconds/:durationSeconds', async (req, res) => {
+    console.log('Викликали:/games/:roomId/teams/:teamName/duration_seconds/:durationSeconds')
+    const roomId = parseInt(req.params.roomId)
+    const teamName = req.params.teamName
+    const durationSeconds = parseInt(req.params.durationSeconds)
+
+    await pool.query('UPDATE teams SET duration_seconds = $1 WHERE room_id = $2 AND name LIKE $3', [durationSeconds, roomId, teamName])
 
     const roomInfo = await getAllRoomInfo(roomId)
     if(!roomInfo){

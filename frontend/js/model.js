@@ -8,6 +8,7 @@ export let model = {
     guessed: 0,
     skip: 0,
     winner: null,
+    durationSeconds: 0,
 }
 
 export const modelExample = {

@@ -127,7 +127,6 @@ export const controller = {
         const roundsPerTeam = Math.floor(model.round / model.teams.length);
         return (roundsPerTeam * 60) + finalRoundTime;
 
-
     },
     async endRound() {
         console.log(model);
@@ -174,6 +173,12 @@ export const controller = {
 
             fetch(`http://localhost:3000/games/${model.roomId}/teams/${activeTeam.name}/is_winner/${activeTeam.isWinner}`, {method: 'PUT'})
                 .then()
+            console.log(model);
+
+            const durationSeconds = this.calculateWinnerTeamTime()
+
+            fetch(`http://localhost:3000/games/${model.roomId}/teams/${activeTeam.name}/duration_seconds/${durationSeconds}`, {method: 'PUT'})
+                .then();
             console.log(model);
 
             setTimeout(async () => {

@@ -1,4 +1,4 @@
-export let timeRemaining = 60;
+export let timeRemaining = 10;
 let interval = null;
 export let isPaused = false;
 
