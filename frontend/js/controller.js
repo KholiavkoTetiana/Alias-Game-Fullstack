@@ -1,7 +1,7 @@
 // Alias controller API
 
 import {aliasWords, model, readStorage, saveModel, usedWords} from "./model.js"
-import {stopTimer, getTimeRemaining} from "./timer-logic.js"; // для обрахунку тривалості останнього раунду
+import {stopTimer, getTimeRemaining} from "./timer-logic.js";
 
 function getIndexById(teams, teamId) {
     for (let i = 0; i < teams.length; i++) {
