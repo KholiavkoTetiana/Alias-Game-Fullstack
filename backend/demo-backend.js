@@ -46,8 +46,7 @@ async function getAllRoomInfo(roomId) {
 app.use(express.json())
 
 app.post('/games/new-room', async (req, res) => {  //створюємо нову пусту кімната для гри з її номером
-    const result = await pool.query(`INSERT INTO rooms (round)
-                                     VALUES (1) RETURNING id`);
+    const result = await pool.query(`INSERT INTO rooms (round) VALUES (1) RETURNING id`);
 
     console.log("Resulttt: ", result)
     res.json({
@@ -203,6 +202,27 @@ app.put('/games/:roomId/teams/:teamName/duration_seconds/:durationSeconds', asyn
     }
     res.json(roomInfo);
 })
+
+app.get('/game_rating', async (req, res) => {
+    try {
+        const result = await pool.query(`
+            SELECT
+                t.room_id,
+                STRING_AGG(t.name, ', ') AS teams_name,
+                MAX(CASE WHEN t.is_winner THEN t.name END) AS winner_name,
+                MAX(CASE WHEN t.is_winner THEN t.duration_seconds END) AS duration_seconds,
+                TO_CHAR(MIN(t.created_at), 'DD-MM-YYYY') AS created_at
+            FROM teams t
+            GROUP BY t.room_id
+            ORDER BY duration_seconds ASC;
+        `);
+
+        res.json(result.rows);
+    } catch (err) {
+        console.error("Помилка при отриманні рейтингу:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 
 app.listen(port, () => {
