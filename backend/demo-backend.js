@@ -18,7 +18,7 @@ const pool = new Pool({
 async function getAllRoomInfo(roomId) {
     const roomResult = await pool.query(`SELECT * FROM rooms WHERE id = $1`, [roomId]);
     if (roomResult.rows.length === 0) {
-        return res.status(404).json({ error: 'Room not found' });
+        return res.status(404).json({error: 'Room not found'});
     }
 
     const teamsResult = await pool.query(`SELECT * FROM teams WHERE room_id = $1`, [roomId]);
@@ -72,7 +72,7 @@ app.get('/games/:roomId', async (req, res) => {       //отримаємо гр�
     const roomId = parseInt(req.params.roomId)
     const roomInfo = await getAllRoomInfo(roomId);
 
-    if(!roomInfo){
+    if (!roomInfo) {
         return res.status(404).json({error: 'Room not found'})
     }
     res.json(roomInfo);
@@ -91,7 +91,7 @@ app.post('/games/:roomId/teams/:teamName', async (req, res) => { // додаєм
     const roomInfo = await getAllRoomInfo(roomId);
 
     if (!roomInfo) {
-        return res.status(404).json({ error: 'Room not found' });
+        return res.status(404).json({error: 'Room not found'});
     }
     res.json(roomInfo);
 
@@ -109,7 +109,7 @@ app.delete('/games/:roomId/teams/:teamName', async (req, res) => { // встан
 
     const roomInfo = await getAllRoomInfo(roomId)
     if (!roomInfo) {
-        return res.status(404).json({ error: 'Room not found' });
+        return res.status(404).json({error: 'Room not found'});
     }
     res.json(roomInfo);
 })
@@ -123,8 +123,8 @@ app.put('/games/:roomId/teams/:teamName/score/:count', async (req, res) => { // 
     await pool.query('UPDATE teams SET score = $1 WHERE room_id = $2 AND name LIKE $3', [score, roomId, teamName])
 
     const roomInfo = await getAllRoomInfo(roomId)
-    if(!roomInfo){
-        return res.status(404).json({ error: 'Room not found' });
+    if (!roomInfo) {
+        return res.status(404).json({error: 'Room not found'});
     }
     res.json(roomInfo);
 })
@@ -137,8 +137,8 @@ app.put('/games/:roomId/round/:number', async (req, res) => {     //встано
     await pool.query('UPDATE rooms SET round = $1 WHERE id = $2', [round, roomId])
 
     const roomInfo = await getAllRoomInfo(roomId)
-    if(!roomInfo){
-        return res.status(404).json({ error: 'Room not found' });
+    if (!roomInfo) {
+        return res.status(404).json({error: 'Room not found'});
     }
     res.json(roomInfo);
 })
@@ -151,8 +151,8 @@ app.put('/games/:roomId/winner/:teamId', async (req, res) => { // встанов
         [winnerId, roomId])
 
     const roomInfo = await getAllRoomInfo(roomId)
-    if(!roomInfo){
-        return res.status(404).json({ error: 'Room not found' });
+    if (!roomInfo) {
+        return res.status(404).json({error: 'Room not found'});
     }
     res.json(roomInfo);
 })
@@ -166,8 +166,8 @@ app.put('/games/:roomId/teams/:teamName/is_winner/:isWinner', async (req, res) =
     await pool.query('UPDATE teams SET is_winner = $1 WHERE room_id = $2 AND name LIKE $3', [isWinner, roomId, teamName])
 
     const roomInfo = await getAllRoomInfo(roomId)
-    if(!roomInfo){
-        return res.status(404).json({ error: 'Room not found' });
+    if (!roomInfo) {
+        return res.status(404).json({error: 'Room not found'});
     }
     res.json(roomInfo);
 
@@ -182,8 +182,8 @@ app.put('/games/:roomId/active-team-id/:activeTeamIndex', async (req, res) => { 
         [activeTeamIndex, roomId])
 
     const roomInfo = await getAllRoomInfo(roomId)
-    if(!roomInfo){
-        return res.status(404).json({ error: 'Room not found' });
+    if (!roomInfo) {
+        return res.status(404).json({error: 'Room not found'});
     }
     res.json(roomInfo);
 })
@@ -197,21 +197,21 @@ app.put('/games/:roomId/teams/:teamName/duration_seconds/:durationSeconds', asyn
     await pool.query('UPDATE teams SET duration_seconds = $1 WHERE room_id = $2 AND name LIKE $3', [durationSeconds, roomId, teamName])
 
     const roomInfo = await getAllRoomInfo(roomId)
-    if(!roomInfo){
-        return res.status(404).json({ error: 'Room not found' });
+    if (!roomInfo) {
+        return res.status(404).json({error: 'Room not found'});
     }
     res.json(roomInfo);
 })
 
 app.get('/game_rating', async (req, res) => {
+    console.log('/game_rating');
     try {
         const result = await pool.query(`
-            SELECT
-                t.room_id,
-                STRING_AGG(t.name, ', ') AS teams_name,
-                MAX(CASE WHEN t.is_winner THEN t.name END) AS winner_name,
-                MAX(CASE WHEN t.is_winner THEN t.duration_seconds END) AS duration_seconds,
-                TO_CHAR(MIN(t.created_at), 'DD-MM-YYYY') AS created_at
+            SELECT t.room_id,
+                   STRING_AGG(t.name, ', ')                               AS teams_name,
+                   MAX(CASE WHEN t.is_winner THEN t.name END)             AS winner_name,
+                   MAX(CASE WHEN t.is_winner THEN t.duration_seconds END) AS duration_seconds,
+                   TO_CHAR(MIN(t.created_at), 'DD-MM-YYYY')               AS created_at
             FROM teams t
             GROUP BY t.room_id
             ORDER BY duration_seconds ASC;
@@ -220,9 +220,23 @@ app.get('/game_rating', async (req, res) => {
         res.json(result.rows);
     } catch (err) {
         console.error("Помилка при отриманні рейтингу:", err);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({error: "Internal Server Error"});
     }
 });
+
+app.get('/get_words/:numberOfWords', async (req, res) => {
+    console.log('/games/:roomId/get_words/:numberOfWords')
+    try {
+        const numberOfWords = parseInt(req.params.numberOfWords);
+        const result = await pool.query('SELECT array(SELECT words.words FROM words ORDER BY RANDOM() LIMIT $1)', [numberOfWords]);
+
+        res.json(result.rows);
+    } catch (err) {
+        console.error("Помилка при отриманні слів:", err);
+        res.status(500).json({error: "Internal Server Error"});
+    }
+
+})
 
 
 app.listen(port, () => {
