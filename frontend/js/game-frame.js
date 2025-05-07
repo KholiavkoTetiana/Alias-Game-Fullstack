@@ -75,7 +75,7 @@ function StartGame() {
 
 }
 
-
+controller.loadWords();
 
 renderGuessScore();
 renderSkipScore();

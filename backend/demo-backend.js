@@ -230,7 +230,7 @@ app.get('/get_words/:numberOfWords', async (req, res) => {
         const numberOfWords = parseInt(req.params.numberOfWords);
         const result = await pool.query('SELECT array(SELECT words.words FROM words ORDER BY RANDOM() LIMIT $1)', [numberOfWords]);
 
-        res.json(result.rows);
+        res.json(result.rows[0].array);
     } catch (err) {
         console.error("Помилка при отриманні слів:", err);
         res.status(500).json({error: "Internal Server Error"});

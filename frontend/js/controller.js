@@ -1,6 +1,6 @@
 // Alias controller API
 
-import {aliasWords, model, readStorage, saveModel, usedWords} from "./model.js"
+import {aliasWords, getWords, model, readStorage, saveModel, usedWords} from "./model.js"
 import {stopTimer, getTimeRemaining} from "./timer-logic.js";
 
 function getIndexById(teams, teamId) {
@@ -68,13 +68,16 @@ export const controller = {
         }
         saveModel();
     },
-
+    loadWords(){
+        getWords(100).then(res => res.forEach(e => aliasWords.push(e)) );
+    },
     getNexWord() {
-        const randomIndex = Math.floor(Math.random() * aliasWords.length);
-        const randomWord = aliasWords[randomIndex];
+        if(aliasWords.length < 20){
+            this.loadWords()
+        }
+        const randomWord = aliasWords[0];
         usedWords.push(randomWord);
-        aliasWords.splice(randomIndex, 1);
-        saveModel();
+        aliasWords.splice(0, 1);
 
         return randomWord;
     },
