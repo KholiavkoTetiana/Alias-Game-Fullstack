@@ -11,7 +11,7 @@
     <div class="button-container">
         <button id="start-new-game"  class="button-play">Грати Alias
         </button>
-        <button onclick="window.location.href='/html/2-team-frame.html'" class="button-continue">Продовжити попередню гру
+        <button id="continue-game" class="button-continue">Продовжити попередню гру
         </button>
         <div>
             <button onclick="window.location.href='/html/gameRating.html'" class="button-ruls">Рейтинг ігор</button>
@@ -21,6 +21,8 @@
 </div>
 
 <script type="module">
+    // Очистити одразу після використання:
+    localStorage.removeItem('gameMode');
 
     import {Notify} from 'notiflix/build/notiflix-notify-aio';
 
@@ -28,10 +30,18 @@
     startNewGame.addEventListener("click", async () => {
         let res = await fetch('http://localhost:3000/games/new-room', {method: 'POST'})
         let room = await res.json()
-        console.log('room;', room)
+        console.log('room:', room)
         localStorage.setItem('room', JSON.stringify(room))
+        localStorage.setItem('gameMode', 'new'); // нова гра
         Notify.success('Нова гра розпочата!');
         window.location.href='/html/2-team-frame.html';
-    });    </script>
+    });
+
+    document.querySelector("#continue-game").addEventListener("click", async () => {
+        localStorage.setItem('gameMode', 'continue'); // нова гра
+        window.location.href = '/html/2-team-frame.html';
+    });
+
+</script>
 <img id="game-map" class="first-background-img" src="img/ALIAS.PNG" alt="Фото приклад">
 </body>

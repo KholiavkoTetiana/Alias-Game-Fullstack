@@ -2,9 +2,23 @@ import {readStorage, model} from "./model.js";
 import {controller} from "./controller.js";
 import {initPlayers} from "./mapa.js";
 
+export let mode = localStorage.getItem('gameMode'); // "new" або "continue"
+
+if (mode === 'new') {
+    document.querySelector("#header").textContent = "Команди";
+    document.querySelector("#start-message").textContent = "Створіть як мінімум 2 команди";
+    document.querySelector("#new-team-inp").placeholder = "Введіть назву команди";
+    document.querySelector("#game-id").textContent += model.roomId;
+
+} else if (mode === 'continue') {
+    document.querySelector("#header").textContent = "Продовження попередньої гри";
+    document.querySelector("#start-message").style.visibility = "hidden";
+    document.querySelector("#new-team-inp").placeholder = "Введіть назву команди";
+} else {
+    console.log("getMode в localStorage відсутній");
+}
 
 readStorage();
-
 
 function renderTeams(teams) {
     const teamsDiv = document.querySelector("#teams-div");

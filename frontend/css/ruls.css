@@ -28,7 +28,6 @@ body {
     gap: 5px;
     align-items: center;
 }
-
 h1{
     text-align: center;
     color: white;
@@ -42,7 +41,6 @@ h3{
     font-weight: bold;
     font-size: 20px;
 }
-
 p{
     text-align: left;
     align-self: flex-start;

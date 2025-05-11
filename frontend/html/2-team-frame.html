@@ -11,12 +11,15 @@
 <body>
 
 <div class="top-container">
-    <button onclick="window.location.href='/index.html'" class="back-button">&#10511; Меню</button>
-    <h1 class="team-head">Команди </h1>
+    <button onclick="window.location.href='/index.html'" class="back-button">&#8592; Меню</button>
+    <h1 id="header" class="team-head"></h1> <!-- команди, продовження гри-->
+    <h4 id="game-id" class="game-id">&#8470; гри: </h4>
 </div>
 
 
-<p class="start-message" id="start-message"> Створіть як мінімум 2 команди</p>
+<p class="start-message" id="start-message"></p>
+<!--<input type="text" id="team-id" class="team-input" placeholder=" ">-->
+
 
 <div id="teams-div">
     <div class="team-item">
@@ -29,7 +32,7 @@
     </div>
 </div>
 
-<input type="text" id="new-team-inp" class="team-input" placeholder="Ввдіть назву команди">
+<input type="text" id="new-team-inp" class="team-input" placeholder=" ">
 
 <button class="plus" id="add-team-btn">+</button>
 
@@ -43,6 +46,8 @@
 <script type="module" src="../js/model.js"></script>
 <script type="module" src="../js/controller.js"></script>
 <script type="module" src="../js/second-frame.js"></script>
+<script type="module" src="../js/continue-game.js"></script>
+
 
 
 </html>

@@ -18,9 +18,10 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 52%;
+    width: 50%;
     height: 60px;
     background-color: #570f0f;
+    justify-content: space-between;
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -35,8 +36,24 @@ body {
     color: #faf7f7;
 }
 
+.game-id{
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #faf7f7;
+}
+
 .back:hover {
     color: #000;
+}
+.game-id {
+    font-size: 18px;
+    color: #faf7f7;
+    background: none;
+    border: none;
+    cursor: pointer; /* якщо треба вигляд як у кнопки */
+    padding: 5px;
+    font-weight: normal; /* або bold, щоб виглядати як кнопка */
 }
 
 .start-message {
@@ -98,7 +115,7 @@ body {
     color: white;
     padding: 5px;
     left: 0;
-    width: 55%;
+    width: 53%;
     margin: 60px auto 5px;
     cursor: pointer;
     border: none;
