@@ -63,9 +63,13 @@ export const controller = {
 
         if (teamIndex !== -1) {
             model.teams.splice(teamIndex, 1);
+            fetch(`http://localhost:3000/games/${model.roomId}/teams/${teamName}`, {method: 'DELETE'})
+                .then(saveResponse);
+            console.log(`команда ${teamName} видалена`);
         } else {
             alert("Команда не знайдена");
         }
+
         saveModel();
     },
     loadWords(){

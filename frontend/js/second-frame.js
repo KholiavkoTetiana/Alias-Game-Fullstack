@@ -1,6 +1,6 @@
 import {readStorage, model} from "./model.js";
 import {controller} from "./controller.js";
-import {initPlayers} from "./mapa.js";
+import {initPlayers, players} from "./mapa.js";
 
 export let mode = localStorage.getItem('gameMode'); // "new" або "continue"
 
@@ -47,6 +47,8 @@ function renderTeams(teams) {
     deleteButtons.forEach((btn) =>
         btn.addEventListener("click", deleteTeam)
     );
+    initPlayers();
+
 }
 
 function addTeam() {
@@ -68,6 +70,12 @@ function addTeam() {
 
 function deleteTeam(e) {
     const teamName = e.target.dataset.teamName;
+
+    if (players[teamName]) {
+        players[teamName].remove();
+        delete players[teamName];
+    }
+
     controller.deleteTeam(teamName);
     renderTeams(model.teams);
 
@@ -108,4 +116,3 @@ function checkValidNumOfCommands() {
 }
 
 checkValidNumOfCommands();
-initPlayers();

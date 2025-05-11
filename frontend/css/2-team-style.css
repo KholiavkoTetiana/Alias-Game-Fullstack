@@ -97,14 +97,17 @@ body {
 
 
 .team-input {
-    padding: 10px 285px;
+    padding: 10px 15px;
     margin-bottom: 15px;
     margin-top: 10px;
     font-size: 15px;
-
+    text-align: center;
+    width: 52%; /* або конкретна ширина */
+    box-sizing: border-box; /* гарантує, що padding не роздує поле */
 }
 
-.team-input::placeholder {
+
+.team-input {
     text-align: center;
 }
 

@@ -9,6 +9,22 @@ body {
 
 }
 
+
+.small-button-menu {
+    min-width: 200px;
+    border-color: #9f0e0e;
+    color: #000000;
+    background-color: white;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 5px 0 5px;
+    border-radius: 35px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
 .container {
     max-width: 1000px;
     margin: 50px auto;

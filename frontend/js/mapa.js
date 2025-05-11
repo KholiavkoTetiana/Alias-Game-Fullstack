@@ -37,6 +37,13 @@ export function initPlayers() {
         players[team.name] = createPlayer(index);
         console.log(`створюємо ${index} гравця ${players[team.name]}`)
     });
+}
+export function deletePlayers() {
+    model.teams.forEach((team, index) => {
+        players[team.name].remove();
+        delete players[team.name];
+        console.log(`створюємо ${index} гравця ${players[team.name]}`)
+    });
 
 }
 
