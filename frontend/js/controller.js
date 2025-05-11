@@ -194,7 +194,9 @@ export const controller = {
                 await controller.endRound();
             }, 3000);
             saveModel();
+            return true;
         }
+        return false;
     }
 }
 

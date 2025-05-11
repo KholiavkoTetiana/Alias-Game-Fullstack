@@ -3,6 +3,7 @@ import {controller} from "./controller.js";
 import {startTimer} from "./timer-logic.js";
 import {updateTimerDisplay, handleEnd} from "./timer.js"
 import {initPlayers, map, placePlayer, players} from "./mapa.js";
+import * as events from "node:events";
 
 
 function renderWords() {
@@ -45,31 +46,55 @@ function movePlayer(){
     placePlayer(coords.x, coords.y, player);
 }
 
+let roundContinue = true;
 function StartGame() {
+    roundContinue = true; // запускаємо раунд заново
+
     const startBtn = document.querySelector("#current-word");
     startBtn.removeEventListener("click", StartGame);
     startTimer(updateTimerDisplay, handleEnd);
     updateTimerDisplay();
 
-
     const guessButton = document.querySelector("#guess-btn");
     const skipButton = document.querySelector("#skip-btn");
 
-    guessButton.addEventListener("click", () => {
+    function handleGuess() {
+        if (!roundContinue) return;
+
         controller.addGuess();
         renderWords();
         renderGuessScore();
         movePlayer();
-        controller.win();
+        if (controller.win()) {
+            roundContinue = false;     // зупиняємо раунд
+            handleEnd();               // викликаємо завершення
+        }
+    }
 
-    });
-
-    skipButton.addEventListener("click", () => {
+    function handleSkip() {
         controller.addSkip();
         renderWords();
         renderSkipScore();
         movePlayer();
+
+        if (!roundContinue) {
+            handleEnd();               // викликаємо завершення
+        }
+    }
+
+
+    guessButton.addEventListener("click", handleGuess);
+    skipButton.addEventListener("click", handleSkip);
+
+    document.addEventListener("keydown", (event) => {
+        if(event.key === "ArrowLeft"){
+            handleGuess();
+        }else if(event.key === "ArrowRight"){
+            handleSkip();
+        }
     });
+
+
     renderWords();
     //намалювати стоп
 
