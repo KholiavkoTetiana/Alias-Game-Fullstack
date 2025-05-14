@@ -22,13 +22,15 @@
 
 <script type="module">
     // Очистити одразу після використання:
+    import {BASEURL} from "./js/model.js";
+
     localStorage.removeItem('gameMode');
 
     import {Notify} from 'notiflix/build/notiflix-notify-aio';
 
     let startNewGame = document.querySelector("#start-new-game");
     startNewGame.addEventListener("click", async () => {
-        let res = await fetch('http://localhost:3000/games/new-room', {method: 'POST'})
+        let res = await fetch(`${BASEURL}/games/new-room`, {method: 'POST'})
         let room = await res.json()
         console.log('room:', room)
         localStorage.setItem('room', JSON.stringify(room))

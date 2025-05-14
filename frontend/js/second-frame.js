@@ -14,6 +14,9 @@ if (mode === 'new') {
     document.querySelector("#header").textContent = "Продовження попередньої гри";
     document.querySelector("#start-message").style.visibility = "hidden";
     document.querySelector("#new-team-inp").placeholder = "Введіть назву команди";
+
+    document.querySelector("#enter-game-id").style.display = "block";
+    document.querySelector("#enter-game-id").placeholder = "Введіть номер вашої гри";
 } else {
     console.log("getMode в localStorage відсутній");
 }
