@@ -1,5 +1,7 @@
+import {BASEURL} from "./model.js";
+
 function renderRating(){
-    fetch('http://localhost:3000/game_rating', { method: 'GET' })
+    fetch(`${BASEURL}/game_rating`, { method: 'GET' })
         .then(res => res.json())
         .then(data => {
             const rating = document.getElementById("rating-body");

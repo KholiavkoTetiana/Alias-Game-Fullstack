@@ -1,3 +1,5 @@
+export const BASEURL = `http://localhost:3000`;
+
 export let model = {
     roomId: 0,
     teams: [
@@ -39,7 +41,7 @@ export let aliasWords = [];
 export const usedWords = [];
 
 export async function getWords(numOfWords){
-    return await fetch(`http://localhost:3000/get_words/${numOfWords}`, { method: 'get' })
+    return await fetch(`${BASEURL}/get_words/${numOfWords}`, { method: 'get' })
                 .then(async res => await res.json())
 }
 

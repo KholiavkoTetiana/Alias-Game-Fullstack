@@ -1,6 +1,6 @@
 // Alias controller API
 
-import {aliasWords, getWords, model, readStorage, saveModel, usedWords} from "./model.js"
+import {aliasWords, BASEURL, getWords, model, readStorage, saveModel, usedWords} from "./model.js"
 import {stopTimer, getTimeRemaining} from "./timer-logic.js";
 
 function getIndexById(teams, teamId) {
@@ -45,7 +45,7 @@ export const controller = {
 
         // model.teams.push({name: newInputName, score: 0, isWinner: false});
         // saveModel();
-        let res = await fetch(`http://localhost:3000/games/${model.roomId}/teams/${newInputName}`, {method: 'POST'})
+        let res = await fetch(`${BASEURL}/games/${model.roomId}/teams/${newInputName}`, {method: 'POST'})
         await saveResponse(res);
 
         // await fetch(`http://localhost:3000/games/${model.roomId}/teams/${newInputName}`, {method: 'POST'})
@@ -63,7 +63,7 @@ export const controller = {
 
         if (teamIndex !== -1) {
             model.teams.splice(teamIndex, 1);
-            fetch(`http://localhost:3000/games/${model.roomId}/teams/${teamName}`, {method: 'DELETE'})
+            fetch(`${BASEURL}/games/${model.roomId}/teams/${teamName}`, {method: 'DELETE'})
                 .then(saveResponse);
             console.log(`команда ${teamName} видалена`);
         } else {
@@ -102,7 +102,7 @@ export const controller = {
             console.log(`з останньої на першу [${model.activeTeamIndex}]`);
         }
 
-        fetch(`http://localhost:3000/games/${model.roomId}/active-team-id/${model.activeTeamId}`, {method: 'PUT'})
+        fetch(`${BASEURL}/games/${model.roomId}/active-team-id/${model.activeTeamId}`, {method: 'PUT'})
             .then(saveResponse);
 
         saveModel();
@@ -127,7 +127,7 @@ export const controller = {
         console.log('activeTeam',activeTeam);
 
         let name = activeTeam.name;
-        await fetch(`http://localhost:3000/games/${model.roomId}/teams/${name}/score/${activeTeam.score}`, {method: 'PUT'})
+        await fetch(`${BASEURL}/games/${model.roomId}/teams/${name}/score/${activeTeam.score}`, {method: 'PUT'})
             .then(saveResponse)
     },
     calculateWinnerTeamTime(){
@@ -147,7 +147,7 @@ export const controller = {
         this.chooseNextTeam();
         console.log(model);
 
-        fetch(`http://localhost:3000/games/${model.roomId}/round/${model.round}`, {method: 'PUT'})
+        fetch(`${BASEURL}/games/${model.roomId}/round/${model.round}`, {method: 'PUT'})
             .then(saveResponse)
         window.location.href = '3-score-frame.html'
 
@@ -174,17 +174,17 @@ export const controller = {
             let winnerId = model.teams[model.activeTeamIndex].id;
             console.log(model);
 
-            fetch(`http://localhost:3000/games/${model.roomId}/winner/${winnerId}`, {method: 'PUT'})
+            fetch(`${BASEURL}/games/${model.roomId}/winner/${winnerId}`, {method: 'PUT'})
                 .then()
             console.log(model);
 
-            fetch(`http://localhost:3000/games/${model.roomId}/teams/${activeTeam.name}/is_winner/${activeTeam.isWinner}`, {method: 'PUT'})
+            fetch(`${BASEURL}/games/${model.roomId}/teams/${activeTeam.name}/is_winner/${activeTeam.isWinner}`, {method: 'PUT'})
                 .then()
             console.log(model);
 
             const durationSeconds = this.calculateWinnerTeamTime()
 
-            fetch(`http://localhost:3000/games/${model.roomId}/teams/${activeTeam.name}/duration_seconds/${durationSeconds}`, {method: 'PUT'})
+            fetch(`${BASEURL}/games/${model.roomId}/teams/${activeTeam.name}/duration_seconds/${durationSeconds}`, {method: 'PUT'})
                 .then();
             console.log(model);
 
