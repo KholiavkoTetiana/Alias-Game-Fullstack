@@ -30,8 +30,9 @@
         </tbody>
     </table>
 </div>
-<script src="../js/game-rating.js"></script>
-<script>
+<script type="module">
+    import {renderRating} from "../js/game-rating.js";
+
     window.onload = function () {
         renderRating();
     };

@@ -1,6 +1,6 @@
 import {BASEURL} from "./model.js";
 
-function renderRating(){
+export function renderRating(){
     fetch(`${BASEURL}/game_rating`, { method: 'GET' })
         .then(res => res.json())
         .then(data => {

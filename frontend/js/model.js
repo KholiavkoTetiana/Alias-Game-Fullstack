@@ -1,5 +1,5 @@
 // export const BASEURL = `http://localhost:3000`;
-export const BASEURL = `https://45.67.229.62:12235`;
+export const BASEURL = `https://alias-back.valadis.pp.ua`;
 
 
 
