@@ -1,5 +1,5 @@
 import {readStorage, model, BASEURL, saveModel} from "./model.js";
-import {controller} from "./controller.js";
+import {controller, getIndexById} from "./controller.js";
 import {initPlayers, players} from "./mapa.js";
 
 export let mode = localStorage.getItem('gameMode'); // "new" або "continue"
@@ -25,6 +25,9 @@ if (mode === 'new') {
     const btn = document.querySelector("#add-team-btn");
     btn.textContent = "Підтвердити";
     btn.classList.add("small-plus");
+    if (model.roomId) {
+        document.querySelector("#game-id").textContent = `№ гри: ${model.roomId}`;
+    }
     renderTeams(model.teams);
 } else {
     console.log("getMode в localStorage відсутній");
@@ -162,17 +165,20 @@ async function checkGameId() {
             alert("Гра без команд недоступна. Додайте команди або створіть нову гру.");
             return;
         }
+        let teams = data.teams.slice();        // клон, якщо хочете зберегти data.teams
+        teams.sort((a, b) => a.id - b.id);     // сортуючи по зростанню id
 
         //  Записати в модель
         model.roomId       = data.roomId;
-        model.teams        = data.teams;
+        model.teams        = teams;
         model.activeTeamId = data.activeTeamId;
+        model.activeTeamIndex = getIndexById(model.teams, model.activeTeamId);
         model.round        = data.round;
         model.guessed      = data.guessed;
         model.skip         = data.skip;
         model.winnerTeamId = data.winnerTeamId;
 
-        document.querySelector("#game-id").textContent = `№ гри: ${data.roomId}`;
+        document.querySelector("#game-id").textContent = `№ гри: ${model.roomId}`;
         renderTeams(model.teams);
         removeStartMessage();
 

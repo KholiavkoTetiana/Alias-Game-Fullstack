@@ -3,7 +3,7 @@
 import {aliasWords, BASEURL, getWords, model, readStorage, saveModel, usedWords} from "./model.js"
 import {stopTimer, getTimeRemaining} from "./timer-logic.js";
 
-function getIndexById(teams, teamId) {
+export function getIndexById(teams, teamId) {
     for (let i = 0; i < teams.length; i++) {
         if (teams[i].id === teamId) {
             console.log('індекс активної команди = ', i)

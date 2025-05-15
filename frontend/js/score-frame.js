@@ -48,8 +48,17 @@ function renderTeamsToPlay(teams) {
 }
 
 function renderActiveTeam() {
-    document.querySelector("#active-team").textContent = controller.getActiveTeam().name;
+    const activeTeam = controller.getActiveTeam();
+    if (activeTeam) {
+        document.querySelector("#active-team").textContent = activeTeam.name;
+    } else {
+        console.log("Активна команда не знайдена");
+        document.querySelector("#active-team").textContent = "Невідомо";
+
+
+    }
 }
+
 
 renderActiveTeam();
 
