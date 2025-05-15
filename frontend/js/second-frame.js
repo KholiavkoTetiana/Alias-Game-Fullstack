@@ -1,4 +1,4 @@
-import {readStorage, model} from "./model.js";
+import {readStorage, model, BASEURL, saveModel} from "./model.js";
 import {controller} from "./controller.js";
 import {initPlayers, players} from "./mapa.js";
 
@@ -9,14 +9,23 @@ if (mode === 'new') {
     document.querySelector("#start-message").textContent = "Створіть як мінімум 2 команди";
     document.querySelector("#new-team-inp").placeholder = "Введіть назву команди";
     document.querySelector("#game-id").textContent += model.roomId;
+    renderTeams(model.teams) // виводимо команди лише якщо нова гра
+    startRound();
+    removeStartMessage();
+
 
 } else if (mode === 'continue') {
-    document.querySelector("#header").textContent = "Продовження попередньої гри";
-    document.querySelector("#start-message").style.visibility = "hidden";
-    document.querySelector("#new-team-inp").placeholder = "Введіть назву команди";
+    const continueBtn = document.querySelector("#header");
+    continueBtn.textContent = "Продовження попередньої гри";
+    continueBtn.style.fontSize = "20px";
 
-    document.querySelector("#enter-game-id").style.display = "block";
-    document.querySelector("#enter-game-id").placeholder = "Введіть номер вашої гри";
+    document.querySelector("#start-message").style.visibility = "hidden";
+    document.querySelector("#new-team-inp").placeholder = "Введіть номер вашої гри";
+
+    const btn = document.querySelector("#add-team-btn");
+    btn.textContent = "Підтвердити";
+    btn.classList.add("small-plus");
+    renderTeams(model.teams);
 } else {
     console.log("getMode в localStorage відсутній");
 }
@@ -55,8 +64,6 @@ function renderTeams(teams) {
 }
 
 function addTeam() {
-    const teamsDiv = document.querySelector("#teams-div");
-    const teamCount = teamsDiv.querySelectorAll("p").length;
     const newInputName = document.querySelector("#new-team-inp").value;
     if (newInputName.length <= 0) {
         alert("введіть назву команди")
@@ -87,9 +94,14 @@ function deleteTeam(e) {
 
 }
 
-renderTeams(model.teams)
 
-document.querySelector("#add-team-btn").addEventListener("click", addTeam);
+const addBtn = document.querySelector("#add-team-btn");
+
+if (mode === "new") {
+    addBtn.addEventListener("click", addTeam);
+} else if (mode === "continue") {
+    addBtn.addEventListener("click", checkGameId);
+}
 
 function removeStartMessage() {
     if (model.teams.length >= 2) {
@@ -98,14 +110,11 @@ function removeStartMessage() {
     controller.removeStartMessage();
 }
 
-removeStartMessage();
-
 function startRound() { // визначаємо поточну команду
     const startBtn = document.querySelector("#go-to-score");
     startBtn.addEventListener("click", controller.chooseNextTeam);
 }
 
-startRound();
 
 function checkValidNumOfCommands() {
     document.getElementById("go-to-score").addEventListener("click", function (event) {
@@ -118,4 +127,59 @@ function checkValidNumOfCommands() {
     });
 }
 
+
 checkValidNumOfCommands();
+
+async function checkGameId() {
+    const inputId = document.querySelector("#new-team-inp").value.trim();
+    if (!inputId) {
+        alert("Введіть номер гри");
+        return;
+    }
+
+    try {
+        const res = await fetch(`${BASEURL}/games/${inputId}`, { method: 'GET' });
+
+        if (!res.ok) {
+            if (res.status === 404) {
+                alert("Гру не знайдено");
+            }else {
+                alert("Такої гри не існує");
+                console.log(`Помилка сервера: ${res.status}`)
+            }
+            return;
+        }
+
+        // Розпарсити JSON
+        const data = await res.json();
+
+        if(data.winnerTeamId){
+            alert("Ця гра вже закінчена, її не можна продовжити");
+            return;
+        }
+
+        if (!Array.isArray(data.teams) || data.teams.length === 0) {
+            alert("Гра без команд недоступна. Додайте команди або створіть нову гру.");
+            return;
+        }
+
+        //  Записати в модель
+        model.roomId       = data.roomId;
+        model.teams        = data.teams;
+        model.activeTeamId = data.activeTeamId;
+        model.round        = data.round;
+        model.guessed      = data.guessed;
+        model.skip         = data.skip;
+        model.winnerTeamId = data.winnerTeamId;
+
+        document.querySelector("#game-id").textContent = `№ гри: ${data.roomId}`;
+        renderTeams(model.teams);
+        removeStartMessage();
+
+        saveModel();
+    } catch (err) {
+        console.error(err);
+        alert("Не вдалося завантажити гру: " + err.message);
+    }
+}
+
