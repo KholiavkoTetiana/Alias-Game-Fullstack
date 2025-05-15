@@ -15,7 +15,7 @@ export function renderRating(){
                  <td>${item.teams_name}</td>
                  <td>${item.winner_name}</td>
                  <td>${Math.floor(item.duration_seconds / 60)} хв ${item.duration_seconds % 60} с</td>
-                 <td>${item.created_at}</td>`;
+                 <td style="white-space: nowrap;">${item.created_at}</td>`;
                 rating.appendChild(row);
             });
             console.log("виклик renderRating:", data);
