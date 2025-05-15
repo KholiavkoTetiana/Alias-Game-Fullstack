@@ -41,6 +41,7 @@
 
     document.querySelector("#continue-game").addEventListener("click", async () => {
         localStorage.setItem('gameMode', 'continue'); // нова гра
+        localStorage.removeItem('room');
         window.location.href = '/html/2-team-frame.html';
     });
 
