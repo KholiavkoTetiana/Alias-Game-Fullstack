@@ -90,25 +90,8 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
-
 .team-item button:hover {
     background-color: #e60000;
-}
-
-
-.team-input {
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    font-size: 15px;
-    text-align: center;
-    width: 52%; /* або конкретна ширина */
-    box-sizing: border-box; /* гарантує, що padding не роздує поле */
-}
-
-
-.team-input {
-    text-align: center;
 }
 
 .plus {
@@ -118,15 +101,37 @@ body {
     color: white;
     padding: 5px;
     left: 0;
-    width: 52%;
+    width: 53%;
     margin: 60px auto 5px;
     cursor: pointer;
     border: none;
 }
-
 .plus:hover {
     background-color: #5a5858;
 }
+
+.team-input {
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    font-size: 15px;
+    text-align: center;
+    width: 52%;
+    box-sizing: border-box;
+}
+
+
+.team-input {
+    text-align: center;
+}
+
+
+.small-plus {
+    font-size: 18px;
+    padding: 13px;
+
+}
+
 
 .next-button {
     position: absolute;
@@ -145,5 +150,37 @@ body {
 .next-button:hover {
     background-color: #831d1d;
 }
+/* Контейнер для поля ID та кнопки */
+.game-id-input-container {
+    position: absolute;
+    bottom: 80px; /* трохи вище кнопки "Далі" */
+    left: 0;
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Стиль поля введення ID */
+.id-input {
+    padding: 10px 15px;
+    font-size: 16px;
+    width: 60%;
+    box-sizing: border-box;
+}
+
+/* Стиль кнопки підтвердження */
+/*.btw-id-input {*/
+/*    padding: 10px 15px;*/
+/*    font-size: 16px;*/
+/*    background-color: #570f0f;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.btw-id-input:hover {*/
+/*    background-color: #831d1d;*/
+/*}*/
 
 

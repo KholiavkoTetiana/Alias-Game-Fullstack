@@ -9,7 +9,6 @@ body {
 
 }
 
-
 .small-button-menu {
     min-width: 200px;
     border-color: #9f0e0e;
@@ -69,7 +68,7 @@ body {
 
 .rating-table th,
 .rating-table td {
-    padding: 15px;
+    padding: 25px;
     text-align: center;
     border-bottom: 1px solid #393737;
 }
@@ -87,5 +86,16 @@ body {
 
 .rating-table td:nth-child(3) {
     font-weight: bold;
+    font-size: 20px;
     color: #a81616;
+}
+
+.rating-table td:nth-child(2) {
+    width: 30%;
+    /*padding-left: 10px;*/
+    /*padding-right: 10px;*/
+    line-height: 1.4;
+    word-break: break-word;
+    font-size: 18px;
+    color: #dbd8d8;
 }

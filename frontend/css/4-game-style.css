@@ -63,7 +63,6 @@ body {
     border-radius: 50%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 .word-display-btn:hover {
     background-color: #100505;
 }
@@ -81,7 +80,6 @@ body {
     border-top: 2px solid #ddd;
 
 }
-
 .button-group {
     display: flex;
     flex-direction: column;

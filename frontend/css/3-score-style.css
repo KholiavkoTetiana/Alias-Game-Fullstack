@@ -83,10 +83,8 @@ h3 {
     border: 5px solid #090b09;
 
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
-
 .start-button {
     position: absolute;
     bottom: 0;
@@ -99,7 +97,6 @@ h3 {
     border: none;
     cursor: pointer;
 }
-
 .start-button:hover {
     background-color: #831d1d;
 }
