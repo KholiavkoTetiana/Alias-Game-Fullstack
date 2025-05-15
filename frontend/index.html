@@ -21,12 +21,10 @@
 </div>
 
 <script type="module">
-    // Очистити одразу після використання:
     import {BASEURL} from "./js/model.js";
-
-    localStorage.removeItem('gameMode');
-
     import {Notify} from 'notiflix/build/notiflix-notify-aio';
+
+    localStorage.removeItem('gameMode');     // Очистити одразу після використання:
 
     let startNewGame = document.querySelector("#start-new-game");
     startNewGame.addEventListener("click", async () => {
@@ -44,7 +42,6 @@
         localStorage.removeItem('room');
         window.location.href = '/html/2-team-frame.html';
     });
-
 </script>
 <img id="game-map" class="first-background-img" src="img/ALIAS.PNG" alt="Фото приклад">
 </body>

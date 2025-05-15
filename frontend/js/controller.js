@@ -20,7 +20,7 @@ async function saveResponse(res) {
     readStorage();
 }
 
-const scoreToWin = 15;
+const scoreToWin = 15; // виграшний скор
 let finalRoundTime = 0;
 export const controller = {
 
@@ -165,7 +165,7 @@ export const controller = {
 
             stopTimer();
 
-            finalRoundTime = 60 - getTimeRemaining(); // скільки секунд пройшло
+            finalRoundTime = 60 - getTimeRemaining(); // тривалість виграшного раунду
             console.log(`Фінальний виграшний раунд тривав: ${finalRoundTime} секунд`);
 
             model.teams[model.activeTeamIndex].isWinner = true;

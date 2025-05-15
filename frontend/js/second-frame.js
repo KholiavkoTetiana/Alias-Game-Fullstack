@@ -12,14 +12,12 @@ if (mode === 'new') {
     renderTeams(model.teams) // виводимо команди лише якщо нова гра
     startRound();
     removeStartMessage();
-
-
 } else if (mode === 'continue') {
     const continueBtn = document.querySelector("#header");
     continueBtn.textContent = "Продовження попередньої гри";
     continueBtn.style.fontSize = "20px";
 
-    document.querySelector("#start-message").style.visibility = "hidden";
+    // document.querySelector("#start-message").remove();
     document.querySelector("#new-team-inp").placeholder = "Введіть номер вашої гри";
 
     const btn = document.querySelector("#add-team-btn");
@@ -139,10 +137,8 @@ async function checkGameId() {
         alert("Введіть номер гри");
         return;
     }
-
     try {
         const res = await fetch(`${BASEURL}/games/${inputId}`, { method: 'GET' });
-
         if (!res.ok) {
             if (res.status === 404) {
                 alert("Гру не знайдено");
@@ -152,23 +148,18 @@ async function checkGameId() {
             }
             return;
         }
-
-        // Розпарсити JSON
-        const data = await res.json();
-
+        const data = await res.json();         // Розпарсити JSON
         if(data.winnerTeamId){
             alert("Ця гра вже закінчена, її не можна продовжити");
             return;
         }
-
         if (!Array.isArray(data.teams) || data.teams.length === 0) {
             alert("Гра без команд недоступна. Додайте команди або створіть нову гру.");
             return;
         }
-        let teams = data.teams.slice();        // клон, якщо хочете зберегти data.teams
-        teams.sort((a, b) => a.id - b.id);     // сортуючи по зростанню id
+        let teams = data.teams.slice();
+        teams.sort((a, b) => a.id - b.id);     // сортування за зростанням id
 
-        //  Записати в модель
         model.roomId       = data.roomId;
         model.teams        = teams;
         model.activeTeamId = data.activeTeamId;
@@ -180,8 +171,7 @@ async function checkGameId() {
 
         document.querySelector("#game-id").textContent = `№ гри: ${model.roomId}`;
         renderTeams(model.teams);
-        removeStartMessage();
-
+        // removeStartMessage();
         saveModel();
     } catch (err) {
         console.error(err);

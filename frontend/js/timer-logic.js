@@ -1,4 +1,4 @@
-export let timeRemaining = 10;
+export let timeRemaining = 10; // тривалість гри
 let interval = null;
 export let isPaused = false;
 
