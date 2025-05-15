@@ -214,6 +214,7 @@ app.get('/game_rating', async (req, res) => {
                    TO_CHAR(MIN(t.created_at), 'DD-MM-YYYY')               AS created_at
             FROM teams t
             GROUP BY t.room_id
+            HAVING MAX(CASE WHEN t.is_winner THEN t.name END) IS NOT NULL
             ORDER BY duration_seconds ASC;
         `);
 
