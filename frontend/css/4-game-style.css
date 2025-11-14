@@ -55,7 +55,7 @@ body {
     align-items: center;
     width: 200px;
     height: 200px;
-    margin: 120px auto 10px;
+    margin: 60px auto 10px;
     font-size: 24px;
     font-weight: bold;
     color: white;
@@ -101,7 +101,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-left: 20px;
+    /*margin-left: 10px;*/
     box-shadow: 0px 4px 8px rgb(39, 34, 34);
 
 }
